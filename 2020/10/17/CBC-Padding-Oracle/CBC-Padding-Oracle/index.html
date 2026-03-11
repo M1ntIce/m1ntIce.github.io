@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://www.pipinstall.cn/img/CBC/PO02.png">
 <meta property="og:image" content="http://www.pipinstall.cn/img/CBC/PO03.png">
 <meta property="article:published_time" content="2020-10-17T14:45:39.000Z">
-<meta property="article:modified_time" content="2026-03-11T14:47:11.725Z">
+<meta property="article:modified_time" content="2026-03-11T14:51:06.352Z">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-11 22:47:11" itemprop="dateModified" datetime="2026-03-11T22:47:11+08:00">2026-03-11</time>
+      <time title="Modified: 2026-03-11 22:51:06" itemprop="dateModified" datetime="2026-03-11T22:51:06+08:00">2026-03-11</time>
     </span>
 
   
@@ -263,9 +263,9 @@
 <h3 id="产生的原理"><a href="#产生的原理" class="headerlink" title="产生的原理"></a><strong>产生的原理</strong></h3><ul>
 <li>如果密文解密成明文之后，填充位判断正确，而且经过业务逻辑代码的校验之后，也是正确，那么服务端会会返回200的状态码</li>
 <li>如果密文解密成明文之后，填充位判断正确，但是业务逻辑判断不通过，也就是说明文有问题，那么服务端会返回200或者300等状态码</li>
-<li>最后如果密文解密成明文之后，填充位判断不正确，会返回500等状态码</li>
+<li>最后如果密文解密成明文之后，填充位判断不正确，会返回500等状态码<span id="more"></span>
+<strong>填充位是否正确会影响到状态码</strong></li>
 </ul>
-<p><strong>填充位是否正确会影响到状态码</strong></p>
 <p>进行padding Oracle攻击的时候，<strong>已知初始化向量</strong>是一个必须的条件</p>
 <p>与CBC 翻转攻击不同的是，这里不清楚解密之后的明文，只知道<strong>初始化向量IV</strong>，<strong>密文</strong>以及<strong>解密是否成功</strong></p>
 <p>同时与服务器进行交互的过程中(发送加密数据到服务端，服务端判断发送的密文解密之后的填充位是否正确–根据状态码)</p>
