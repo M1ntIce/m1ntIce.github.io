@@ -24,21 +24,21 @@
     <meta name="description" content="Summary">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Xylia&#39;s Blog">
-<meta property="og:url" content="https://m1ntice.github.io/archives/2024/06/index.html">
+<meta property="og:url" content="https://m1ntice.github.io/page/2/index.html">
 <meta property="og:site_name" content="Xylia&#39;s Blog">
 <meta property="og:description" content="Summary">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://m1ntice.github.io/archives/2024/06/">
+<link rel="canonical" href="https://m1ntice.github.io/page/2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"archives/2024/06/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | Xylia's Blog</title>
+<title>Xylia's Blog</title>
   
 
 
@@ -174,49 +174,212 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner index posts-expand">
+
+    
 
 
+<div class="post-block">
   
   
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 12 posts in total. Keep on posting.</span>
-      </div>
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2022/04/21/Java-Class-Loader-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/Java-Class-Loader%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xylia's Blog">
+      <meta itemprop="description" content="Summary">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Xylia's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/21/Java-Class-Loader-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/Java-Class-Loader%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Java Class Loader(类加载机制)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-04-21 21:59:37" itemprop="dateCreated datePublished" datetime="2022-04-21T21:59:37+08:00">2022-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-04 22:06:12" itemprop="dateModified" datetime="2024-06-04T22:06:12+08:00">2024-06-04</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>5.8k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>5 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Java是一个依赖于<code>JVM</code>实现的跨平台的开发语言。Java程序在运行之前先编译成<code>class文件</code>，Java类初始化的时候会调用<code>java.lang.ClassLoader</code>加载类字节码，<code>ClassLoader</code>会调用<code>JVM</code>的的native方法(<code>defineClass0/1/2</code>) 来定义一个<code>java.lang.Class</code>实例</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/21/Java-Class-Loader-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/Java-Class-Loader%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
-    <div class="collection-year">
-      <span class="collection-header">2024<span class="collection-year-count">1</span></span>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-06-04T22:24:07+08:00"
-              content="2024-06-04">
-          06-04
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/06/04/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/" itemprop="url">
-            <span itemprop="name">缓存投毒</span>
-          </a>
-      </div>
-
+    <footer class="post-footer">
+        <div class="post-eof"></div>
       
-    </header>
+    </footer>
   </article>
+</div>
 
 
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2020/10/17/CBC-Padding-Oracle/CBC-Padding-Oracle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xylia's Blog">
+      <meta itemprop="description" content="Summary">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Xylia's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/17/CBC-Padding-Oracle/CBC-Padding-Oracle/" class="post-title-link" itemprop="url">CBC-Padding-Oracle</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-10-17 22:45:39" itemprop="dateCreated datePublished" datetime="2020-10-17T22:45:39+08:00">2020-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-11 22:58:52" itemprop="dateModified" datetime="2026-03-11T22:58:52+08:00">2026-03-11</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>6.2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>6 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<h1 id="分组密码CBC-padding-Oracle攻击"><a href="#分组密码CBC-padding-Oracle攻击" class="headerlink" title="分组密码CBC padding Oracle攻击"></a>分组密码CBC padding Oracle攻击</h1><h2 id="Padding-Oracle"><a href="#Padding-Oracle" class="headerlink" title="Padding Oracle"></a>Padding Oracle</h2><p>padding Oracle Attack是针对CBC连接模式的攻击，和具体的加密算法无关(也就是说和是使用AES还是DES加密或其他的加密算法无关)</p>
+<h3 id="产生的原理"><a href="#产生的原理" class="headerlink" title="产生的原理"></a><strong>产生的原理</strong></h3><ul>
+<li>如果密文解密成明文之后，填充位判断正确，而且经过业务逻辑代码的校验之后，也是正确，那么服务端会会返回200的状态码</li>
+<li>如果密文解密成明文之后，填充位判断正确，但是业务逻辑判断不通过，也就是说明文有问题，那么服务端会返回200或者300等状态码</li>
+<li>最后如果密文解密成明文之后，填充位判断不正确，会返回500等状态码
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/17/CBC-Padding-Oracle/CBC-Padding-Oracle/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
-  </div>
-  
-  
-  
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </div>
   </main>

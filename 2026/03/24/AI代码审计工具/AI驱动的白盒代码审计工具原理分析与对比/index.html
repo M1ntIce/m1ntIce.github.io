@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"m1ntice.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="静态分析引擎 + LLM123456789101112131415161718192021222324252627282930313233343536373839404142434445阶段一：传统静态分析（确定性）━━━━━━━━━━━━━━━━━━━━━━━━━━━━━源代码  │  ├─→ AST解析（抽象语法树构建）  ├─→ CFG构建（控制流图）  ├─→ DFG构建（数据流图）  ├">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI驱动的白盒代码审计工具原理分析与对比">
+<meta property="og:url" content="https://m1ntice.github.io/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:site_name" content="Xylia&#39;s Blog">
+<meta property="og:description" content="静态分析引擎 + LLM123456789101112131415161718192021222324252627282930313233343536373839404142434445阶段一：传统静态分析（确定性）━━━━━━━━━━━━━━━━━━━━━━━━━━━━━源代码  │  ├─→ AST解析（抽象语法树构建）  ├─→ CFG构建（控制流图）  ├─→ DFG构建（数据流图）  ├">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/ebd59a29e3e2eafa621282b19f84374.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/60a4152ff2883276e53f106e1e2bbf1.png">
+<meta property="article:published_time" content="2026-03-24T13:58:56.000Z">
+<meta property="article:modified_time" content="2026-03-24T14:04:08.662Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/ebd59a29e3e2eafa621282b19f84374.png">
+
+
+<link rel="canonical" href="https://m1ntice.github.io/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://m1ntice.github.io/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/","path":"2026/03/24/AI代码审计工具/AI驱动的白盒代码审计工具原理分析与对比/","title":"AI驱动的白盒代码审计工具原理分析与对比"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AI驱动的白盒代码审计工具原理分析与对比 | Xylia's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Xylia's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xylia's Tech Notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E5%BC%95%E6%93%8E-LLM"><span class="nav-number">1.</span> <span class="nav-text">静态分析引擎 + LLM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AST-CFG-DFG"><span class="nav-number">1.0.1.</span> <span class="nav-text">AST&amp;&amp;CFG&amp;&amp;DFG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%A1%E7%82%B9%E5%88%86%E6%9E%90%EF%BC%88Taint-Analysis%EF%BC%89"><span class="nav-number">1.0.2.</span> <span class="nav-text">污点分析（Taint Analysis）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">1.0.3.</span> <span class="nav-text">模式匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LLM%E5%90%8E%E5%A4%84%E7%90%86"><span class="nav-number">1.0.4.</span> <span class="nav-text">LLM后处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAG-%E4%BB%A3%E7%A0%81%E7%9F%A5%E8%AF%86%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">RAG + 代码知识库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RAG%EF%BC%88Retrieval-Augmented-Generation%EF%BC%89"><span class="nav-number">2.0.1.</span> <span class="nav-text">RAG（Retrieval Augmented Generation）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text">差异对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Semgrep-Assistant"><span class="nav-number">4.1.</span> <span class="nav-text">Semgrep Assistant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalGPT"><span class="nav-number">4.2.</span> <span class="nav-text">LocalGPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepAudit"><span class="nav-number">4.3.</span> <span class="nav-text">DeepAudit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TabbyML-tabby"><span class="nav-number">4.4.</span> <span class="nav-text">TabbyML&#x2F;tabby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CodeGeeX"><span class="nav-number">4.5.</span> <span class="nav-text">CodeGeeX</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">Summary</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xylia's Blog">
+      <meta itemprop="description" content="Summary">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AI驱动的白盒代码审计工具原理分析与对比 | Xylia's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI驱动的白盒代码审计工具原理分析与对比
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-24 21:58:56 / Modified: 22:04:08" itemprop="dateCreated datePublished" datetime="2026-03-24T21:58:56+08:00">2026-03-24</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>5.1k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>5 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="静态分析引擎-LLM"><a href="#静态分析引擎-LLM" class="headerlink" title="静态分析引擎 + LLM"></a>静态分析引擎 + LLM</h1><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">阶段一：传统静态分析（确定性）</span><br><span class="line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br><span class="line">源代码</span><br><span class="line">  │</span><br><span class="line">  ├─→ AST解析（抽象语法树构建）</span><br><span class="line">  ├─→ CFG构建（控制流图）</span><br><span class="line">  ├─→ DFG构建（数据流图）</span><br><span class="line">  ├─→ 污点分析（Taint Analysis）</span><br><span class="line">  │     <span class="keyword">source</span> → sanitizer? → sink</span><br><span class="line">  ├─→ 模式匹配（Semgrep/CodeQL规则）</span><br><span class="line">  └─→ 输出：原始告警列表（数百~数千条）</span><br><span class="line">        │</span><br><span class="line">        │  典型问题：</span><br><span class="line">        │  - 误报率 <span class="number">60</span>%~<span class="number">90</span>%</span><br><span class="line">        │  - 报告只给行号，缺乏上下文解释</span><br><span class="line">        │  - 无法判断业务逻辑漏洞</span><br><span class="line">        ▼</span><br><span class="line"></span><br><span class="line">阶段二：LLM后处理（概率性）</span><br><span class="line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br><span class="line">原始告警 + 告警上下文代码片段（±N行）</span><br><span class="line">  │</span><br><span class="line">  ├─→ 逐条送入LLM</span><br><span class="line">  │     Prompt大致结构：</span><br><span class="line">  │     ┌─────────────────────────────┐</span><br><span class="line">  │     │ 你是一个安全审计专家。        │</span><br><span class="line">  │     │ 规则引擎报告以下潜在漏洞：     │</span><br><span class="line">  │     │ 类型: SQL注入               │</span><br><span class="line">  │     │ 位置: user_service.py:<span class="number">42</span>    │</span><br><span class="line">  │     │ [附带代码上下文]             │</span><br><span class="line">  │     │ 请判断：                    │</span><br><span class="line">  │     │ <span class="number">1.</span> 这是真阳性还是误报？       │</span><br><span class="line">  │     │ <span class="number">2.</span> 漏洞的利用条件是什么？     │</span><br><span class="line">  │     │ <span class="number">3.</span> 严重程度如何？            │</span><br><span class="line">  │     │ <span class="number">4.</span> 给出修复建议              │</span><br><span class="line">  │     └─────────────────────────────┘</span><br><span class="line">  │</span><br><span class="line">  ├─→ LLM输出结构化判断</span><br><span class="line">  │     &#123; <span class="string">&quot;verdict&quot;</span>: <span class="string">&quot;true_positive&quot;</span>,</span><br><span class="line">  │       <span class="string">&quot;severity&quot;</span>: <span class="string">&quot;HIGH&quot;</span>,</span><br><span class="line">  │       <span class="string">&quot;explanation&quot;</span>: <span class="string">&quot;...&quot;</span>,</span><br><span class="line">  │       <span class="string">&quot;fix_suggestion&quot;</span>: <span class="string">&quot;...&quot;</span> &#125;</span><br><span class="line">  │</span><br><span class="line">  └─→ 过滤 + 重排 + 格式化 → 最终报告</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="AST-CFG-DFG"><a href="#AST-CFG-DFG" class="headerlink" title="AST&amp;&amp;CFG&amp;&amp;DFG"></a>AST&amp;&amp;CFG&amp;&amp;DFG</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>AST（抽象语法树）</th>
+<th>CFG（控制流图）</th>
+<th>DFG（数据流图）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>核心关注</strong></td>
+<td>代码的语法结构（静态）</td>
+<td>代码的执行路径（动态）</td>
+<td>数据的依赖关系（数据流向）</td>
+</tr>
+<tr>
+<td><strong>基本单元</strong></td>
+<td>语法节点（赋值、运算、判断）</td>
+<td>基本块（连续执行的代码段）</td>
+<td>数据节点（变量、常量、运算）</td>
+</tr>
+<tr>
+<td><strong>连接方式</strong></td>
+<td>父子节点（语法层级）</td>
+<td>有向边（执行跳转）</td>
+<td>有向边（数据依赖）</td>
+</tr>
+<tr>
+<td><strong>典型问题</strong></td>
+<td>“这段代码有哪些语法错误？”</td>
+<td>“这段代码有哪些执行路径？”</td>
+<td>“变量 y 的值来自哪里？”</td>
+</tr>
+<tr>
+<td><strong>应用场景</strong></td>
+<td>代码解析、语法检查、代码格式化</td>
+<td>代码优化、覆盖率测试、死代码检测</td>
+<td>常量传播、污点分析、并行计算</td>
+</tr>
+</tbody></table>
+<h3 id="污点分析（Taint-Analysis）"><a href="#污点分析（Taint-Analysis）" class="headerlink" title="污点分析（Taint Analysis）"></a>污点分析（Taint Analysis）</h3><p>污点分析是一种<strong>基于 DFG（数据流图）的静态程序分析技术</strong>，核心目标是：<br>追踪程序中 “受污染的数据”（比如用户输入、外部接口传入的数据）从<strong>源头（Source）</strong> 出发，经过哪些路径传递，最终是否到达<strong>危险点（Sink）</strong>；若传递过程中没有经过<strong>净化函数（Sanitizer）</strong> 处理，就可能存在安全漏洞（比如 SQL 注入、XSS、命令注入）。</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Source（源头）</td>
+<td>产生 “污点数据” 的位置（不受信任的输入）</td>
+<td>用户输入（<code>input()</code>&#x2F;<code>request.POST</code>）、文件读取、网络请求返回值</td>
+</tr>
+<tr>
+<td>Sanitizer（净化器）</td>
+<td>清洗 &#x2F; 验证污点数据的函数（能把 “污点” 变成 “干净数据”）</td>
+<td>SQL 转义函数（<code>mysql.escape_string()</code>）、XSS 过滤函数（<code>html.escape()</code>）</td>
+</tr>
+<tr>
+<td>Sink（危险点）</td>
+<td>执行敏感操作的位置（若传入未净化的污点数据，会触发漏洞）</td>
+<td>SQL 执行（<code>cursor.execute()</code>）、系统命令调用（<code>os.system()</code>）、页面输出</td>
+</tr>
+</tbody></table>
+<h3 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h3><p>模式匹配是一种“按模板找目标” 的技术 —— 你先定义一个 “模式（模板）”，然后在目标数据（比如代码 AST&#x2F;DFG、字符串、列表）中，找出和这个模板结构 &#x2F; 内容匹配的部分，甚至可以提取匹配到的关键信息。</p>
+<ul>
+<li>结合AST：定位危险代码<ul>
+<li>例如未净化的SQL拼接：<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">模式 = Call<span class="params">( </span></span><br><span class="line"><span class="params">	<span class="attr">func</span>=Name(<span class="attr">id</span>=&#x27;execute&#x27;)</span>, <span class="comment"># 调用execute函数 </span></span><br><span class="line">	args=[BinOp<span class="params">( # 参数是字符串拼接</span></span><br><span class="line"><span class="params">		<span class="attr">left</span>=Constant(<span class="attr">value</span>=&#x27;select * from user where <span class="attr">name</span>=&#x27;)</span>,</span><br><span class="line">		op=Add<span class="params">()</span>,</span><br><span class="line">		right=Name<span class="params">(<span class="attr">id</span>=any_var)</span> <span class="comment"># 拼接的是变量（可能是污点）</span></span><br><span class="line">		)]</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>结合DFG：定位数据流向模式：<ul>
+<li>例如想找”用户输入-&gt;未净化-&gt;SQL执行“的数据流模式<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模式 = <span class="function"><span class="title">Source</span>(<span class="variable">input</span>) → 未经过<span class="variable">Sanitizer</span> → <span class="title">Sink</span>(<span class="variable">execute</span>)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="LLM后处理"><a href="#LLM后处理" class="headerlink" title="LLM后处理"></a>LLM后处理</h3><ul>
+<li><strong>LLM 后处理的核心逻辑</strong>：静态分析做 “基础筛选”（找可疑模式 &#x2F; 路径），LLM 做 “智能精加工”（上下文推理 + 误判修正 + 排序 + 格式化），最终提升分析结果的准确率和可用性；</li>
+<li><strong>LLM 的核心价值</strong>：弥补静态分析 “无上下文理解、无常识推理、仅机械匹配” 的短板，利用预训练的知识储备和推理能力，处理静态分析规则无法覆盖的场景；</li>
+</ul>
+<h1 id="RAG-代码知识库"><a href="#RAG-代码知识库" class="headerlink" title="RAG + 代码知识库"></a>RAG + 代码知识库</h1><p>核心思路：不依赖定义原则，而是构建一个代码安全知识库，让LLM通过检索相似模式来做判断</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">阶段一：知识库构建（离线）</span><br><span class="line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br><span class="line"></span><br><span class="line">知识来源：</span><br><span class="line">  ├── CVE历史案例（NVD + 补丁diff）</span><br><span class="line">  ├── CWE漏洞模式描述</span><br><span class="line">  ├── 安全编码规范（OWASP/CERT）</span><br><span class="line">  ├── 项目自身的安全历史（已修复的漏洞）</span><br><span class="line">  ├── 框架/库的安全文档</span><br><span class="line">  └── 代码安全模式模板</span><br><span class="line"></span><br><span class="line">           │</span><br><span class="line">           ▼</span><br><span class="line"></span><br><span class="line">  Embedding处理：</span><br><span class="line">  ┌──────────────────────────────────────┐</span><br><span class="line">  │  对每个知识条目：                      │</span><br><span class="line">  │  <span class="number">1.</span> 提取代码片段 + 漏洞描述            │</span><br><span class="line">  │  <span class="number">2.</span> 生成Embedding向量                  │</span><br><span class="line">  │  <span class="number">3.</span> 存入向量数据库（Milvus/Pinecone）  │</span><br><span class="line">  │                                       │</span><br><span class="line">  │  索引维度：                            │</span><br><span class="line">  │  - 代码语义向量（code embedding）       │</span><br><span class="line">  │  - 漏洞类型标签                         │</span><br><span class="line">  │  - 语言/框架标签                        │</span><br><span class="line">  │  - AST特征向量（可选）                  │</span><br><span class="line">  └──────────────────────────────────────┘</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">阶段二：在线审计（实时）</span><br><span class="line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br><span class="line"></span><br><span class="line">待审计源代码</span><br><span class="line">  │</span><br><span class="line">  ├─→ 代码分块（Chunking）</span><br><span class="line">  │     按函数<span class="regexp">/类/</span>模块切分，保持语义完整性</span><br><span class="line">  │     每块保留：函数签名、调用关系、<span class="keyword">import</span>信息</span><br><span class="line">  │</span><br><span class="line">  ├─→ 多路检索</span><br><span class="line">  │     ├── 语义检索：代码块embedding → 向量相似搜索</span><br><span class="line">  │     ├── 关键词检索：函数名<span class="regexp">/API名/</span>参数名 → BM25</span><br><span class="line">  │     ├── AST检索：结构相似性匹配</span><br><span class="line">  │     └── 调用图检索：相关上下游函数</span><br><span class="line">  │</span><br><span class="line">  ├─→ 上下文组装</span><br><span class="line">  │     ┌─────────────────────────────────┐</span><br><span class="line">  │     │ 检索到的相似漏洞案例（Top-K）     │</span><br><span class="line">  │     │ + 对应的修复方案                  │</span><br><span class="line">  │     │ + 相关CWE描述                    │</span><br><span class="line">  │     │ + 当前待审计代码                  │</span><br><span class="line">  │     │ + 调用链上下文                   │</span><br><span class="line">  │     └─────────────────────────────────┘</span><br><span class="line">  │</span><br><span class="line">  └─→ LLM综合分析</span><br><span class="line">        <span class="string">&quot;参考以下3个历史SQL注入案例，</span></span><br><span class="line"><span class="string">         分析当前代码是否存在类似风险...&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="RAG（Retrieval-Augmented-Generation）"><a href="#RAG（Retrieval-Augmented-Generation）" class="headerlink" title="RAG（Retrieval Augmented Generation）"></a>RAG（<strong>R</strong>etrieval <strong>A</strong>ugmented <strong>G</strong>eneration）</h3><p>RAG &#x3D; 先检索，再生成</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────────────────────────────────────┐</span><br><span class="line">│                     RAG 完整流程                       │</span><br><span class="line">│                                                       │</span><br><span class="line">│  ╔═══════════════╗         ╔══════════════════════╗   │</span><br><span class="line">│  ║  离线阶段      ║         ║  在线阶段（每次问答） ║   │</span><br><span class="line">│  ║  (建知识库)    ║         ║                      ║   │</span><br><span class="line">│  ║               ║         ║  用户提问             ║   │</span><br><span class="line">│  ║  文档 ─→ 分块  ║         ║    │                 ║   │</span><br><span class="line">│  ║    │          ║         ║    ▼                 ║   │</span><br><span class="line">│  ║    ▼          ║         ║  向量检索(找相关资料)  ║   │</span><br><span class="line">│  ║  Embedding    ║         ║    │                 ║   │</span><br><span class="line">│  ║    │          ║         ║    ▼                 ║   │</span><br><span class="line">│  ║    ▼          ║         ║  组装Prompt           ║   │</span><br><span class="line">│  ║  存入向量数据库 ║ ──────→ ║  (问题+检索到的资料)  ║   │</span><br><span class="line">│  ╚═══════════════╝         ║    │                 ║   │</span><br><span class="line">│                             ║    ▼                 ║   │</span><br><span class="line">│                             ║  LLM生成回答         ║   │</span><br><span class="line">│                             ║    │                 ║   │</span><br><span class="line">│                             ║    ▼                 ║   │</span><br><span class="line">│                             ║  返回给用户           ║   │</span><br><span class="line">│                             ╚══════════════════════╝   │</span><br><span class="line">└──────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<h1 id="差异对比"><a href="#差异对比" class="headerlink" title="差异对比"></a>差异对比</h1><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>静态分析引擎 + LLM</th>
+<th>RAG + 代码知识库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LLM 的知识来源</td>
+<td>仅预训练通用知识</td>
+<td>预训练知识 + 实时检索的漏洞知识库</td>
+</tr>
+<tr>
+<td>LLM 在流程中的角色</td>
+<td>事后 “精加工”（修正 &#x2F; 排序 &#x2F; 格式化）</td>
+<td>全程 “精准判断”（结合案例做推理）</td>
+</tr>
+<tr>
+<td>是否依赖外部知识库</td>
+<td>否</td>
+<td>是（核心依赖）</td>
+</tr>
+<tr>
+<td>对于已知漏洞的检验能力（CWE Top 25）</td>
+<td>强，无规则则无检测</td>
+<td>中，可泛化相似模式</td>
+</tr>
+<tr>
+<td>对于未知&#x2F;新型漏洞的检验能力</td>
+<td>弱，无规则则无检测</td>
+<td>中，可通过案例学习</td>
+</tr>
+<tr>
+<td>业务逻辑漏洞</td>
+<td>极弱，难以用规则描述</td>
+<td>中，可通过案例学习</td>
+</tr>
+<tr>
+<td>误报率</td>
+<td>高（原始）→ 中（LLM过滤后）</td>
+<td>中（取决于检索精度）<br></td>
+</tr>
+<tr>
+<td>漏报率</td>
+<td>中（规则覆盖决定）</td>
+<td>中高（知识库盲区）</td>
+</tr>
+<tr>
+<td>速度<br></td>
+<td>快（静态分析本身很快，LLM是瓶颈）</td>
+<td>慢（检索+LLM双重开销）<br></td>
+</tr>
+<tr>
+<td>可解释性&#x2F;可审计性<br></td>
+<td>高，规则可追溯</td>
+<td>低，LLM判断难以追溯</td>
+</tr>
+</tbody></table>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><h2 id="Semgrep-Assistant"><a href="#Semgrep-Assistant" class="headerlink" title="Semgrep Assistant"></a>Semgrep Assistant</h2><ul>
+<li>star：14.5k</li>
+<li>Link：<ul>
+<li><a target="_blank" rel="noopener" href="https://a.storyblok.com/f/151984/x/2d12dc0223/whitepaper_-ai-powered-appsec-engineer-automate.pdf?cv=1728584410408">whitepaper_-ai-powered-appsec-engineer-automate.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://semgrep.dev/docs/semgrep-multimodal/customize">https://semgrep.dev/docs/semgrep-multimodal/customize</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/semgrep/semgrep">GitHub - semgrep&#x2F;semgrep: Lightweight static analysis for many languages. Find bug variants with patterns that look like source code. · GitHub</a></li>
+</ul>
+</li>
+<li>classification：静态引擎分析+LLM</li>
+<li>部署方式：SaaS<ul>
+<li>OPENAI可使用<br>  ![[8095dbe813e513d0bd6f0d606739792.png]]</li>
+<li>不依赖单一公有云（AWS&#x2F;Azure&#x2F;GCP），默认由 Semgrep 统一管理Semgrep<br>  <img src="https://raw.githubusercontent.com/M1ntIce/image/master/ebd59a29e3e2eafa621282b19f84374.png"></li>
+</ul>
+</li>
+</ul>
+<h2 id="LocalGPT"><a href="#LocalGPT" class="headerlink" title="LocalGPT"></a>LocalGPT</h2><ul>
+<li>star：1k</li>
+<li>link：<a target="_blank" rel="noopener" href="https://github.com/localgpt-app/localgpt">GitHub - localgpt-app&#x2F;localgpt: Local AI assistant, dreaming explorable worlds. · GitHub</a></li>
+<li>classification：RAG+代码知识库</li>
+<li>部署方式：本地部署，导入待审计代码，对接模型使用</li>
+</ul>
+<h2 id="DeepAudit"><a href="#DeepAudit" class="headerlink" title="DeepAudit"></a>DeepAudit</h2><ul>
+<li>star：5.4k</li>
+<li>link：<a target="_blank" rel="noopener" href="https://github.com/lintsinghua/DeepAudit">GitHub - lintsinghua&#x2F;DeepAudit: DeepAudit：人人拥有的 AI 黑客战队，让漏洞挖掘触手可及。国内首个开源的代码漏洞挖掘多智能体系统。小白一键部署运行，自主协作审计 + 自动化沙箱 PoC 验证。支持 Ollama 私有部署 ，一键生成报告。支持中转站。​让安全不再昂贵，让审计不再复杂。 · GitHub</a></li>
+<li>classification：RAG知识库+AST分析</li>
+<li>部署方式：属于微服务，拉取Docker镜像，支持OpenAI Key，也可以通过配置兼容 Azure OpenAI<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/60a4152ff2883276e53f106e1e2bbf1.png"></li>
+</ul>
+<h2 id="TabbyML-tabby"><a href="#TabbyML-tabby" class="headerlink" title="TabbyML&#x2F;tabby"></a>TabbyML&#x2F;tabby</h2><ul>
+<li>star：33k</li>
+<li>link：<a target="_blank" rel="noopener" href="https://github.com/TabbyML/tabby">GitHub - TabbyML&#x2F;tabby: Self-hosted AI coding assistant · GitHub</a></li>
+<li>classification：RAG+代码知识库（⚠是自托管AI编码助手，可做轻量化AI安全检查，非专业白盒审计工具）</li>
+<li>部署方式：本地部署<br>![[Pasted image 20260320162637.png]]</li>
+</ul>
+<h2 id="CodeGeeX"><a href="#CodeGeeX" class="headerlink" title="CodeGeeX"></a>CodeGeeX</h2><ul>
+<li>star：8.8k</li>
+<li>link：<a target="_blank" rel="noopener" href="https://github.com/zai-org/CodeGeeX">GitHub - zai-org&#x2F;CodeGeeX: CodeGeeX: An Open Multilingual Code Generation Model (KDD 2023) · GitHub</a></li>
+<li>classification：静态分析+传统LLM</li>
+<li>部署方式：IDE插件，（⚠是AI编程助手，属于大模型，非专业白盒审计工具）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/24/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/" rel="prev" title="安全架构学学习笔记：IT、OT、IOT与CIA">
+                  <i class="fa fa-angle-left"></i> 安全架构学学习笔记：IT、OT、IOT与CIA
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder"></span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">66k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">1:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>
