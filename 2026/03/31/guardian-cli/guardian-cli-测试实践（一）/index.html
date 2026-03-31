@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"m1ntice.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Environment guardian-cli：https:&#x2F;&#x2F;github.com&#x2F;zakirkun&#x2F;guardian-cli123python3 -m venv venvsource venv&#x2F;bin&#x2F;activatepip install -e . DeRPnStiNK：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;derpnstink-1,221&#x2F; 用户名： stinky">
+<meta property="og:type" content="article">
+<meta property="og:title" content="guardian-cli 测试实践（一）">
+<meta property="og:url" content="https://m1ntice.github.io/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Xylia&#39;s Blog">
+<meta property="og:description" content="Environment guardian-cli：https:&#x2F;&#x2F;github.com&#x2F;zakirkun&#x2F;guardian-cli123python3 -m venv venvsource venv&#x2F;bin&#x2F;activatepip install -e . DeRPnStiNK：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;derpnstink-1,221&#x2F; 用户名： stinky">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223427732.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223552623.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223717216.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223759491.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223913306.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223946835.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224110342.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224152063.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224256121.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224431471.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224501794.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224602041.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224728809.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224817956.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224905544.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224958641.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331225102889.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331225144543.png">
+<meta property="article:published_time" content="2026-03-31T14:30:40.000Z">
+<meta property="article:modified_time" content="2026-03-31T14:52:00.238Z">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="guardian-cli">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223427732.png">
+
+
+<link rel="canonical" href="https://m1ntice.github.io/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://m1ntice.github.io/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/","path":"2026/03/31/guardian-cli/guardian-cli-测试实践（一）/","title":"guardian-cli 测试实践（一）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>guardian-cli 测试实践（一） | Xylia's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Xylia's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xylia's Tech Notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Environment"><span class="nav-number">1.</span> <span class="nav-text">Environment</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">配置需要注意的问题</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code-Analysis"><span class="nav-number">2.</span> <span class="nav-text">Code Analysis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Architecture"><span class="nav-number">3.</span> <span class="nav-text">Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Tools"><span class="nav-number">3.1.</span> <span class="nav-text">Optional Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Original-Workflow"><span class="nav-number">3.2.</span> <span class="nav-text">Original Workflow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Process"><span class="nav-number">4.</span> <span class="nav-text">Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#workflow%EF%BC%9Anetwork"><span class="nav-number">4.0.1.</span> <span class="nav-text">workflow：network</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YAML"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">YAML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output"><span class="nav-number">4.0.1.2.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#workflow-wordpress-audit"><span class="nav-number">4.0.2.</span> <span class="nav-text">workflow: wordpress_audit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YAML-1"><span class="nav-number">4.0.2.1.</span> <span class="nav-text">YAML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-1"><span class="nav-number">4.0.2.2.</span> <span class="nav-text">Output</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Analysis"><span class="nav-number">4.0.2.2.1.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Agent"><span class="nav-number">5.0.1.</span> <span class="nav-text">Agent</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">Summary</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xylia's Blog">
+      <meta itemprop="description" content="Summary">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="guardian-cli 测试实践（一） | Xylia's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          guardian-cli 测试实践（一）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-31 22:30:40 / Modified: 22:52:00" itemprop="dateCreated datePublished" datetime="2026-03-31T22:30:40+08:00">2026-03-31</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>21k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>19 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
+<li>guardian-cli：<a target="_blank" rel="noopener" href="https://github.com/zakirkun/guardian-cli">https://github.com/zakirkun/guardian-cli</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv venv</span><br><span class="line"><span class="built_in">source</span> venv/bin/activate</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure></li>
+<li>DeRPnStiNK：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/derpnstink-1,221/">https://www.vulnhub.com/entry/derpnstink-1,221/</a><ul>
+<li><strong>用户名：</strong> <code>stinky</code></li>
+<li><strong>密码：</strong> <code>wedgie57</code><span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h6 id="配置需要注意的问题"><a href="#配置需要注意的问题" class="headerlink" title="配置需要注意的问题"></a>配置需要注意的问题</h6><p>guardian-cli不直接支持Azure openai<br>需将ai目录下的openai_provider改为如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">OpenAI Provider Implementation</span></span><br><span class="line"><span class="string">Supports both standard OpenAI API and Azure OpenAI Service</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span>, <span class="type">Dict</span>, <span class="type">Any</span>, <span class="type">List</span>, <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI, AzureChatOpenAI</span><br><span class="line">    <span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> HumanMessage, SystemMessage, AIMessage</span><br><span class="line">    LANGCHAIN_AVAILABLE = <span class="literal">True</span></span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    LANGCHAIN_AVAILABLE = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ai.providers.base_provider <span class="keyword">import</span> BaseProvider</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OpenAIProvider</span>(<span class="title class_ inherited__">BaseProvider</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;OpenAI API provider (supports standard OpenAI and Azure OpenAI)&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, config: <span class="type">Dict</span>[<span class="built_in">str</span>, <span class="type">Any</span>], logger</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(config, logger)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Get OpenAI-specific configuration</span></span><br><span class="line">        ai_config = config.get(<span class="string">&quot;ai&quot;</span>, &#123;&#125;)</span><br><span class="line">        openai_config = ai_config.get(<span class="string">&quot;openai&quot;</span>, &#123;&#125;)</span><br><span class="line">        </span><br><span class="line">        self.model_name = openai_config.get(<span class="string">&quot;model&quot;</span>, <span class="string">&quot;gpt-4-turbo&quot;</span>)</span><br><span class="line">        self.api_key = openai_config.get(<span class="string">&quot;api_key&quot;</span>) <span class="keyword">or</span> os.environ.get(<span class="string">&quot;OPENAI_API_KEY&quot;</span>)</span><br><span class="line">        self.temperature = ai_config.get(<span class="string">&quot;temperature&quot;</span>, <span class="number">0.2</span>)</span><br><span class="line">        self.max_tokens = ai_config.get(<span class="string">&quot;max_tokens&quot;</span>, <span class="number">8000</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Azure-specific settings (optional)</span></span><br><span class="line">        self.azure_endpoint = openai_config.get(<span class="string">&quot;azure_endpoint&quot;</span>) <span class="keyword">or</span> os.environ.get(<span class="string">&quot;AZURE_OPENAI_ENDPOINT&quot;</span>)</span><br><span class="line">        self.azure_deployment = openai_config.get(<span class="string">&quot;azure_deployment&quot;</span>) <span class="keyword">or</span> os.environ.get(<span class="string">&quot;AZURE_DEPLOYMENT_NAME&quot;</span>)</span><br><span class="line">        self.azure_api_version = openai_config.get(<span class="string">&quot;azure_api_version&quot;</span>, <span class="string">&quot;2024-02-15-preview&quot;</span>)  <span class="comment"># Default API version</span></span><br><span class="line">        </span><br><span class="line">        self.backend = <span class="literal">None</span></span><br><span class="line">        self._initialize()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_initialize</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Initialize OpenAI or Azure OpenAI backend&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> LANGCHAIN_AVAILABLE:</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(</span><br><span class="line">                <span class="string">&quot;LangChain OpenAI library not found. &quot;</span></span><br><span class="line">                <span class="string">&quot;Install with: pip install langchain-openai&quot;</span></span><br><span class="line">            )</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.api_key:</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(</span><br><span class="line">                <span class="string">&quot;OPENAI_API_KEY not found. &quot;</span></span><br><span class="line">                <span class="string">&quot;Set environment variable or add to config.&quot;</span></span><br><span class="line">            )</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">if</span> self.azure_endpoint <span class="keyword">and</span> self.azure_deployment:</span><br><span class="line">                <span class="comment"># Use Azure OpenAI</span></span><br><span class="line">                self.backend = AzureChatOpenAI(</span><br><span class="line">                    azure_endpoint=self.azure_endpoint,</span><br><span class="line">                    azure_deployment=self.azure_deployment,</span><br><span class="line">                    api_version=self.azure_api_version,</span><br><span class="line">                    api_key=self.api_key,</span><br><span class="line">                    temperature=self.temperature,</span><br><span class="line">                    max_tokens=self.max_tokens</span><br><span class="line">                )</span><br><span class="line">                self.logger.info(<span class="string">f&quot;Initialized Azure OpenAI provider: <span class="subst">&#123;self.azure_deployment&#125;</span> @ <span class="subst">&#123;self.azure_endpoint&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># Use standard OpenAI</span></span><br><span class="line">                self.backend = ChatOpenAI(</span><br><span class="line">                    model=self.model_name,</span><br><span class="line">                    openai_api_key=self.api_key,</span><br><span class="line">                    temperature=self.temperature,</span><br><span class="line">                    max_tokens=self.max_tokens</span><br><span class="line">                )</span><br><span class="line">                self.logger.info(<span class="string">f&quot;Initialized OpenAI provider: <span class="subst">&#123;self.model_name&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;Failed to initialize OpenAI backend: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_format_context</span>(<span class="params">self, context: <span class="type">Optional</span>[<span class="type">List</span>[<span class="type">Any</span>]]</span>) -&gt; <span class="type">List</span>[<span class="type">Union</span>[HumanMessage, AIMessage]]:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Format context for LangChain&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> context:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        messages = []</span><br><span class="line">        <span class="keyword">for</span> msg <span class="keyword">in</span> context:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">hasattr</span>(msg, <span class="string">&quot;content&quot;</span>):</span><br><span class="line">                messages.append(msg)</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(msg, <span class="built_in">dict</span>):</span><br><span class="line">                role = msg.get(<span class="string">&quot;role&quot;</span>, <span class="string">&quot;user&quot;</span>)</span><br><span class="line">                content = msg.get(<span class="string">&quot;content&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">                <span class="keyword">if</span> role == <span class="string">&quot;user&quot;</span>:</span><br><span class="line">                    messages.append(HumanMessage(content=content))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    messages.append(AIMessage(content=content))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> messages</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        prompt: <span class="built_in">str</span>,</span></span><br><span class="line"><span class="params">        system_prompt: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">        context: <span class="type">Optional</span>[<span class="built_in">list</span>] = <span class="literal">None</span></span></span><br><span class="line"><span class="params">    </span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Generate response using OpenAI&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">await</span> self._apply_rate_limit()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            messages = []</span><br><span class="line">            <span class="keyword">if</span> system_prompt:</span><br><span class="line">                messages.append(SystemMessage(content=system_prompt))</span><br><span class="line">            </span><br><span class="line">            messages.extend(self._format_context(context))</span><br><span class="line">            messages.append(HumanMessage(content=prompt))</span><br><span class="line">            </span><br><span class="line">            response = <span class="keyword">await</span> self.backend.ainvoke(messages)</span><br><span class="line">            <span class="keyword">return</span> response.content</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            self.logger.error(<span class="string">f&quot;OpenAI generation failed: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_sync</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        prompt: <span class="built_in">str</span>,</span></span><br><span class="line"><span class="params">        system_prompt: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">        context: <span class="type">Optional</span>[<span class="built_in">list</span>] = <span class="literal">None</span></span></span><br><span class="line"><span class="params">    </span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Generate response synchronously&quot;&quot;&quot;</span></span><br><span class="line">        self._apply_rate_limit_sync()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            messages = []</span><br><span class="line">            <span class="keyword">if</span> system_prompt:</span><br><span class="line">                messages.append(SystemMessage(content=system_prompt))</span><br><span class="line">            </span><br><span class="line">            messages.extend(self._format_context(context))</span><br><span class="line">            messages.append(HumanMessage(content=prompt))</span><br><span class="line">            </span><br><span class="line">            response = self.backend.invoke(messages)</span><br><span class="line">            <span class="keyword">return</span> response.content</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            self.logger.error(<span class="string">f&quot;OpenAI sync generation failed: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_model_name</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Get current model name&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.azure_deployment:</span><br><span class="line">            <span class="keyword">return</span> self.azure_deployment</span><br><span class="line">        <span class="keyword">return</span> self.model_name</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_available</span>(<span class="params">self</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Check if provider is available&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> LANGCHAIN_AVAILABLE <span class="keyword">and</span> <span class="built_in">bool</span>(self.api_key) <span class="keyword">and</span> self.backend <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>再通过环境变量设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> AZURE OPENAI ENDPOINT=<span class="string">&quot;https://mpn-openai-france-central.openai.azure.com/&quot;</span></span><br><span class="line"><span class="built_in">export</span> AZURE_DEPLOYMENT_NAME=<span class="string">&quot;gpt-4o&quot;</span></span><br><span class="line"><span class="built_in">export</span> OPENAI_API_KEY=<span class="string">&quot;你的Azure密铜&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>或者通过修改配置文件guardian.yaml:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ai:</span></span><br><span class="line">	<span class="attr">openai:</span></span><br><span class="line">		<span class="string">api_key:&quot;你的Azure密钥&quot;</span></span><br><span class="line">		<span class="attr">azure_endpoint:</span> <span class="string">&quot;https://mpn-openai-france-central.openai.azure.com/&quot;</span></span><br><span class="line">		<span class="attr">azure_deployment:</span> <span class="string">&quot;gpt-4o&quot;</span></span><br><span class="line">		<span class="string">azure_api_version:&quot;2024-02-15-preview”</span> <span class="comment">#可选，默认已设置</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Code-Analysis"><a href="#Code-Analysis" class="headerlink" title="Code Analysis"></a>Code Analysis</h1><h1 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h1><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Guardian Architecture:</span><br><span class="line">┌─────────────────────────────────────────┐</span><br><span class="line">│         AI Provider Layer               │</span><br><span class="line">│  (OpenAI, Claude, Gemini, OpenRouter)   │</span><br><span class="line">└─────────────────────────────────────────┘</span><br><span class="line">                 │</span><br><span class="line">┌─────────────────────────────────────────┐</span><br><span class="line">│       Multi-Agent <span class="keyword">System</span>                │</span><br><span class="line">│  Planner → Tool Agent → Analyst →      │</span><br><span class="line">│            Reporter                      │</span><br><span class="line">└─────────────────────────────────────────┘</span><br><span class="line">                 │</span><br><span class="line">┌─────────────────────────────────────────┐</span><br><span class="line">│      Workflow Engine                    │</span><br><span class="line">│  - <span class="keyword">Parameter</span> Priority                   │</span><br><span class="line">│  - Evidence <span class="comment">Capture</span>                     │</span><br><span class="line">│  - Session <span class="comment">Management</span>                   │</span><br><span class="line">└─────────────────────────────────────────┘</span><br><span class="line">                 │</span><br><span class="line">┌─────────────────────────────────────────┐</span><br><span class="line">│      Tool <span class="comment">Integration Layer</span>             │</span><br><span class="line">│  (19 Security <span class="comment">Tools)</span>                    │</span><br><span class="line">└─────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">guardian-cli</span><br><span class="line">├── ai/                             #  AI Provider Layer</span><br><span class="line">│	├── providers</span><br><span class="line">│	├──	prompt_templates            # API端点，base_url，api_key</span><br><span class="line">│			├──	__init__.py         # 分类的提示词集合库</span><br><span class="line">│			├──	analyst.py          # AI分析模板：&#123;tools&#125;, &#123;target&#125;, &#123;command&#125;, &#123;output&#125; │                                      (扫描器的原始输出数据)</span><br><span class="line">│			├──	planner.py          # AI战略方针：&#123;phase&#125;, &#123;completed_actions&#125;,          │                                       &#123;findings&#125;, &#123;available_actions&#125;</span><br><span class="line">│			├── reporter.py         # 撰写报告</span><br><span class="line">│			├── tool_selector.py    # 挑选工具，配参数</span><br><span class="line">│	├──	__init__.py       </span><br><span class="line">│	├──	ai_client.py                # 为不同大模型提供统一接口</span><br><span class="line">│	├──	gemini_client.py            # 向后兼容的gemini接口</span><br><span class="line">├── cli/                            # Command-line interface</span><br><span class="line">│   ├── commands/                   # CLI commands (init, scan, recon, etc.)</span><br><span class="line">│            ├── __init__.py</span><br><span class="line">│            ├── ai_expalin.py      # 数据分析，审讯</span><br><span class="line">│            ├── analyze.py         # 分析JSON文件的代码</span><br><span class="line">│            ├── init.py              </span><br><span class="line">│            ├── models.py          # 打印支持的model</span><br><span class="line">│            ├── recon.py           # 加载配置，启动引擎</span><br><span class="line">│            ├── report.py          # 将侦察数据写成渗透测试报告(写法目前只支持gemini)</span><br><span class="line">│            ├── scan.py            # 写死的nmap系统命令 </span><br><span class="line">│            ├── workflow.py        # 读取workflow对应的yaml配置文件       </span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── main.py           </span><br><span class="line">├── core/                 # Core agent <span class="keyword">system</span></span><br><span class="line">│   ├── agent.py          # Base agent, 提供通用的“思考”、“记忆”和“日志”功能。</span><br><span class="line">│   ├── planner.py        # Planner agent，读取记忆 -&gt; 分析局势 -&gt; 决定下一步动作</span><br><span class="line">│   ├── tool_agent.py     # Tool selection agent, 管理工具列表、让 AI 选择工具、生成参数、  │                            执行系统命令、记录结果</span><br><span class="line">│   ├── analyst_agent.py  # Analysis agent, 阅读扫描日志 -&gt; 识别漏洞 -&gt; 排除误报 -&gt; 关联分│                           析 -&gt; 存入记忆</span><br><span class="line">│   ├── reporter_agent.py # Reporting agent, 多格式输出和AI 决策追溯</span><br><span class="line">│   ├── memory.py         # State management, 维护记忆</span><br><span class="line">│   └── workflow.py       # Workflow orchestration, 定义了两种执行模式： 既定流程(读取YAML │                           文件按照其中定义的顺序执行) &amp;&amp;自主思考(autonomous)</span><br><span class="line">├── tools/                # Pentesting tool wrappers</span><br><span class="line">│   ├── nmap.py           # Nmap integration</span><br><span class="line">│   ├── masscan.py        # Masscan integration</span><br><span class="line">│   ├── httpx.py          # httpx integration</span><br><span class="line">│   ├── subfinder.py      # Subfinder integration</span><br><span class="line">│   ├── amass.py          # Amass integration</span><br><span class="line">│   ├── nuclei.py         # Nuclei integration</span><br><span class="line">│   ├── sqlmap.py         # SQLMap integration</span><br><span class="line">│   ├── wpscan.py         # WPScan integration</span><br><span class="line">│   ├── whatweb.py        # WhatWeb integration</span><br><span class="line">│   ├── wafw00f.py        # Wafw00f integration</span><br><span class="line">│   ├── nikto.py          # Nikto integration</span><br><span class="line">│   ├── testssl.py        # TestSSL integration</span><br><span class="line">│   ├── sslyze.py         # SSLyze integration</span><br><span class="line">│   ├── gobuster.py       # Gobuster integration</span><br><span class="line">│   ├── ffuf.py           # FFuf integration</span><br><span class="line">│   └── ...               # <span class="number">15</span> tools total</span><br><span class="line">├── workflows/             # Workflow definitions (YAML)</span><br><span class="line">├── utils/                 # Utilities (logging, validation)</span><br><span class="line">├── config/                # Configuration files</span><br><span class="line">├── docs/                  # Documentation</span><br><span class="line">└── reports/               # Generated reports</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Optional-Tools"><a href="#Optional-Tools" class="headerlink" title="Optional Tools"></a>Optional Tools</h2><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Installation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>nmap</strong></td>
+<td>Port scanning</td>
+<td><code>apt install nmap</code> &#x2F; <code>choco install nmap</code></td>
+</tr>
+<tr>
+<td><strong>masscan</strong></td>
+<td>Ultra-fast scan</td>
+<td><code>apt install masscan</code> &#x2F; Build from source</td>
+</tr>
+<tr>
+<td><strong>httpx</strong></td>
+<td>HTTP probing</td>
+<td><code>go install github.com/projectdiscovery/httpx/cmd/httpx@latest</code></td>
+</tr>
+<tr>
+<td><strong>subfinder</strong></td>
+<td>Subdomain enum</td>
+<td><code>go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest</code></td>
+</tr>
+<tr>
+<td><strong>amass</strong></td>
+<td>Network mapping</td>
+<td><code>go install github.com/owasp-amass/amass/v4/...@master</code></td>
+</tr>
+<tr>
+<td><strong>nuclei</strong></td>
+<td>Vuln scanning</td>
+<td><code>go install github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest</code></td>
+</tr>
+<tr>
+<td><strong>whatweb</strong></td>
+<td>Tech fingerprint</td>
+<td><code>gem install whatweb</code> &#x2F; <code>apt install whatweb</code></td>
+</tr>
+<tr>
+<td><strong>wafw00f</strong></td>
+<td>WAF detection</td>
+<td><code>pip install wafw00f</code></td>
+</tr>
+<tr>
+<td><strong>nikto</strong></td>
+<td>Web vuln scan</td>
+<td><code>apt install nikto</code></td>
+</tr>
+<tr>
+<td><strong>sqlmap</strong></td>
+<td>SQL injection</td>
+<td><code>pip install sqlmap</code> &#x2F; <code>apt install sqlmap</code></td>
+</tr>
+<tr>
+<td><strong>wpscan</strong></td>
+<td>WordPress scan</td>
+<td><code>gem install wpscan</code></td>
+</tr>
+<tr>
+<td><strong>testssl</strong></td>
+<td>SSL&#x2F;TLS testing</td>
+<td>Download from <a target="_blank" rel="noopener" href="https://testssl.sh/">testssl.sh</a></td>
+</tr>
+<tr>
+<td><strong>sslyze</strong></td>
+<td>SSL&#x2F;TLS analysis</td>
+<td><code>pip install sslyze</code></td>
+</tr>
+<tr>
+<td><strong>gobuster</strong></td>
+<td>Directory brute</td>
+<td><code>go install github.com/OJ/gobuster/v3@latest</code></td>
+</tr>
+<tr>
+<td><strong>ffuf</strong></td>
+<td>Web fuzzing</td>
+<td><code>go install github.com/ffuf/ffuf/v2@latest</code></td>
+</tr>
+<tr>
+<td><strong>arjun</strong></td>
+<td>Parameter discovery</td>
+<td><code>pip install arjun</code></td>
+</tr>
+<tr>
+<td><strong>xsstrike</strong></td>
+<td>Advanced XSS</td>
+<td><code>git clone https://github.com/s0md3v/XSStrike</code></td>
+</tr>
+<tr>
+<td><strong>gitleaks</strong></td>
+<td>Secret scanning</td>
+<td><code>go install github.com/zricethezav/gitleaks/v8@latest</code></td>
+</tr>
+<tr>
+<td><strong>cmseek</strong></td>
+<td>CMS detection</td>
+<td><code>pip install cmseek</code></td>
+</tr>
+<tr>
+<td><strong>dnsrecon</strong></td>
+<td>DNS enumeration</td>
+<td><code>pip install dnsrecon</code></td>
+</tr>
+</tbody></table>
+<h2 id="Original-Workflow"><a href="#Original-Workflow" class="headerlink" title="Original Workflow"></a>Original Workflow</h2><p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223427732.png"></p>
+<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><h3 id="workflow：network"><a href="#workflow：network" class="headerlink" title="workflow：network"></a>workflow：network</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cli.main workflow run --name networkt --target 192.168.1.151</span><br></pre></td></tr></table></figure>
+<p>由于网络问题，将nmap的相关配置参数修改如下：<br>（location：workflows&#x2F;network_pentest.yaml）</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">steps:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">name:</span> <span class="string">full_port_scan</span></span><br><span class="line">	  <span class="attr">type:</span> <span class="string">tool</span> </span><br><span class="line">	  <span class="attr">tool:</span> <span class="string">nmap</span></span><br><span class="line">	  <span class="attr">objective:</span> <span class="string">&quot;Comprehensive port scan&quot;</span></span><br><span class="line">	  <span class="comment"># 【修改点 1】只扫描常用端口或前 1000 个端口，缩短时间</span></span><br><span class="line">	  <span class="comment"># 如果确信只有几个端口，甚至可以直接写 &quot;21,22,80&quot; </span></span><br><span class="line">	  <span class="attr">ports:</span> <span class="string">&quot;1-1000&quot;</span> <span class="number">10</span> <span class="number">11</span> </span><br><span class="line">	  </span><br><span class="line">	  <span class="comment"># 【修改点 2】保持 SYN 扫描 (-sS) 12 </span></span><br><span class="line">	  <span class="attr">scan_type:</span> <span class="string">&quot;-sS&quot;</span> <span class="number">13</span> <span class="number">14</span></span><br><span class="line">	  </span><br><span class="line">	  <span class="comment"># 【修改点 3】将 T3 改为 T4 (Aggressive)，内网扫描通常更安全且更快</span></span><br><span class="line">	  <span class="attr">timing:</span> <span class="string">&quot;T4&quot;</span></span><br></pre></td></tr></table></figure>
+<p>![[Pasted image 20260331223525.png]]</p>
+<h4 id="YAML"><a href="#YAML" class="headerlink" title="YAML"></a>YAML</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Network Infrastructure Penetration Testing Workflow</span></span><br><span class="line"><span class="comment"># Network-level security assessment</span></span><br><span class="line"></span><br><span class="line"><span class="attr">name:</span> <span class="string">network_pentest</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Network</span> <span class="string">infrastructure</span> <span class="string">security</span> <span class="string">testing</span></span><br><span class="line"></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">full_port_scan</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">tool</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">nmap</span></span><br><span class="line">    <span class="attr">objective:</span> <span class="string">&quot;Comprehensive port scan&quot;</span></span><br><span class="line">    <span class="attr">parameters:</span></span><br><span class="line">      <span class="attr">ports:</span> <span class="string">&quot;1-65535&quot;</span></span><br><span class="line">      <span class="attr">scan_type:</span> <span class="string">&quot;-sS&quot;</span></span><br><span class="line">      <span class="attr">timing:</span> <span class="string">&quot;T3&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">service_detection</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">tool</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">nmap</span></span><br><span class="line">    <span class="attr">objective:</span> <span class="string">&quot;Deep service and version detection&quot;</span></span><br><span class="line">    <span class="attr">parameters:</span></span><br><span class="line">      <span class="attr">ports:</span> <span class="string">&quot;detected&quot;</span>  <span class="comment"># Use ports from previous scan</span></span><br><span class="line">      <span class="attr">scan_type:</span> <span class="string">&quot;-sV -sC -A&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">vulnerability_assessment</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">tool</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">nuclei</span></span><br><span class="line">    <span class="attr">objective:</span> <span class="string">&quot;Network vulnerability scanning&quot;</span></span><br><span class="line">    <span class="attr">parameters:</span></span><br><span class="line">      <span class="attr">severity:</span> [<span class="string">&quot;critical&quot;</span>, <span class="string">&quot;high&quot;</span>]</span><br><span class="line">  </span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">analyze_network</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">analysis</span></span><br><span class="line">    <span class="attr">agent:</span> <span class="string">analyst</span></span><br><span class="line">    <span class="attr">objective:</span> <span class="string">&quot;Analyze network security posture&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">generate_network_report</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">report</span></span><br><span class="line">    <span class="attr">agent:</span> <span class="string">reporter</span></span><br><span class="line">    <span class="attr">format:</span> <span class="string">markdown</span></span><br><span class="line"></span><br><span class="line"><span class="attr">settings:</span></span><br><span class="line">  <span class="attr">max_parallel_tools:</span> <span class="number">1</span>  <span class="comment"># Sequential for network scans</span></span><br><span class="line">  <span class="attr">require_confirmation:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">save_intermediate:</span> <span class="literal">true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223552623.png"></p>
+<table>
+<thead>
+<tr>
+<th align="left">风险等级</th>
+<th align="left">问题描述</th>
+<th align="left">A决策意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">High  <br>(最高优先级)</td>
+<td align="left">FTP 服务 (vsftpd 3.0.2)  <br>端口 21</td>
+<td align="left">AI 判断 FTP 传输是明文的，且旧版本可能存在后门。这是攻击者最容易获取权限的入口。</td>
+</tr>
+<tr>
+<td align="left">Medium  <br>(中等风险)</td>
+<td align="left">SSH 服务 (OpenSSH 6.6.1p1)  <br>端口 22</td>
+<td align="left">虽然 SSH 比较安全，但这个版本太老了（2014年左右的版本），可能存在已知的漏洞，适合暴力破解。</td>
+</tr>
+<tr>
+<td align="left">Medium  <br>(中等风险)</td>
+<td align="left">HTTP 服务 (Apache 2.4.7)  <br>端口 80</td>
+<td align="left">除了版本老旧，AI 特别注意到了 <code>robots.txt</code> 暴露了 <code>/php/</code> 和 <code>/temporary/</code> 目录。这告诉攻击者“这里藏着东西”，是后续 Web 攻击的关键线索。</td>
+</tr>
+<tr>
+<td align="left">Low  <br>(低风险)</td>
+<td align="left">SSH 主机密钥暴露  <br>(Host Keys)</td>
+<td align="left">这是指纹信息： <br>AI 发现扫描结果里包含了服务器的 DSA、RSA 公钥指纹。虽然不能直接用来入侵，但攻击者可以用它来确认这台服务器的身份，或者在以后的攻击中进行比对。</td>
+</tr>
+<tr>
+<td align="left">Info  <br>(信息性)</td>
+<td align="left">主机名暴露  <br>(DeRPnStiNK.lan)</td>
+<td align="left">社工素材：<br>AI 识别出这是一个非标准的、带有戏谑性质的主机名（DeRPnStiNK）。这虽然不是漏洞，但给攻击者提供了“情报”：这可能是一台内部测试机，或者管理员的风格比较随意，可能伴随弱密码。</td>
+</tr>
+</tbody></table>
+<h3 id="workflow-wordpress-audit"><a href="#workflow-wordpress-audit" class="headerlink" title="workflow: wordpress_audit"></a>workflow: wordpress_audit</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cli.main workflow run --name wordpress_audit --target <span class="number">192.168</span><span class="number">.1</span><span class="number">.151</span></span><br></pre></td></tr></table></figure>
+<h4 id="YAML-1"><a href="#YAML-1" class="headerlink" title="YAML"></a>YAML</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># WordPress Specific Audit Workflow</span></span><br><span class="line"><span class="comment"># Focused scan for WordPress sites using WPScan and related tools</span></span><br><span class="line"></span><br><span class="line"><span class="attr">name:</span> <span class="string">wordpress_audit</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Specialized</span> <span class="string">security</span> <span class="string">audit</span> <span class="string">for</span> <span class="string">WordPress</span> <span class="string">installations</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">1.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Guardian</span> <span class="string">AI</span></span><br><span class="line"></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">tech_verification</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">whatweb</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">Verify</span> <span class="string">target</span> <span class="string">is</span> <span class="string">WordPress</span></span><br><span class="line">  </span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">wpscan_enum</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">wpscan</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">Enumerate</span> <span class="string">WordPress</span> <span class="string">users,</span> <span class="string">plugins,</span> <span class="string">and</span> <span class="string">themes</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="attr">enumerate:</span> <span class="string">&quot;u,p,t&quot;</span></span><br><span class="line">      <span class="attr">detection_mode:</span> <span class="string">&quot;mixed&quot;</span></span><br><span class="line">    <span class="attr">dependencies:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tech_verification</span></span><br><span class="line"></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">wpscan_vuln</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">wpscan</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">Scan</span> <span class="string">for</span> <span class="string">known</span> <span class="string">vulnerabilities</span> <span class="string">in</span> <span class="string">core,</span> <span class="string">plugins,</span> <span class="string">and</span> <span class="string">themes</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="comment"># Requires API token in config for full data</span></span><br><span class="line">      <span class="attr">random_user_agent:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">dependencies:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">wpscan_enum</span></span><br><span class="line"></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">sql_check_wp</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">sqlmap</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">Check</span> <span class="string">for</span> <span class="string">SQL</span> <span class="string">injection</span> <span class="string">in</span> <span class="string">WP</span> <span class="string">parameters</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="attr">forms:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">batch:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">crawl:</span> <span class="number">2</span></span><br><span class="line">    <span class="attr">dependencies:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tech_verification</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>核心工具：<code>whatweb</code>（指纹识别）、<code>wpscan</code>（WordPress 专用扫描器）、<code>sqlmap</code>（SQL 注入测试）。</li>
+<li>流程：先用 <code>whatweb</code> 确认目标&#x3D;&gt;用 <code>wpscan</code> 找出用户、插件、主题&#x3D;&gt;<strong>漏洞分析</strong>：用 <code>wpscan</code> 比对已知漏洞&#x3D;&gt;<strong>利用&#x2F;验证</strong>：用 <code>sqlmap</code> 尝试验证 SQL 注入</li>
+</ul>
+<h4 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h4><p>![[Pasted image 20260331223657.png]]</p>
+<h5 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h5><p>按照yaml的逻辑来讲，wpscan应该能够找到用户名用以撞库做准备，但是实际上没有，检查输出的json文件发现：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223717216.png"></p>
+<ul>
+<li><strong><code>&quot;exit_code&quot;: 4</code><strong>：这是 WPScan 的</strong>专用错误码</strong>。根据 WPScan 的官方文档，<code>4</code> 代表 **”Aborted due to user input &#x2F; No valid targets found”**（因用户输入或未找到有效目标而中止）。</li>
+<li>**<code>&quot;output&quot;: &quot;&quot;</code>**：输出为空。这意味着这个步骤没有跑出任何结果，直接报错了。<br>同时在sqlmap这里的输出来讲，也能够佐证，虽然sqlmap成功运行了，但是逻辑上没有找到参数<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223759491.png"></li>
+</ul>
+<p><strong>解决方案：</strong><br>对guardian-cli&#x2F;config&#x2F;guardian.yaml文件进行的tools部分新增如下字段：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wpscan:</span></span><br><span class="line">	<span class="attr">api_token:</span> <span class="string">&quot;这里填入你的_WPSCAN_API_TOKEN&quot;</span> </span><br><span class="line">	<span class="attr">threads:</span> <span class="number">5</span></span><br><span class="line">	<span class="attr">timeout:</span> <span class="number">60</span></span><br><span class="line">	<span class="attr">random_agent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>必须和上面的 <code>nmap:</code>、<code>httpx:</code> <strong>垂直对齐</strong></li>
+<li>不要删除原有的 <code>nmap</code> 或其他工具的配置，直接在 <code>tools:</code> 下面“追加”<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223913306.png"><br>之后重新启动，让Python 代码能读到这个 Token<br>修改之后通过输出的json文件发现确实解决了这个问题，但是仍然没有预期输出，ai_decisions部分出现：没有提供 WPScan 的原始输出。<br>说明： 尽管工具运行了，但 Guardian 的分析模块没有收到任何漏洞数据。这意味着 WPScan 可能只是跑了一半，或者因为目标不是 WordPress 而跳过了，导致后续的 AI 无法进行“漏洞分析”这一步。<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331223946835.png"><br>手动whatweb验证是否能够判断是wordpress：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224110342.png"><br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224152063.png"><br>从结果来看确实whatweb无法找到WordPress的特征，从网上找的WP来看是通过dirb工具爆破目录发现的WordPress特征，尝试手动验证：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224256121.png"><br>但是访问出现问题<br>![[Pasted image 20260331224408.png]]<br>10.129.223.35<br>尝试修改hosts文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/hosts</span><br><span class="line">10.129.223.35 derpnstink.local</span><br><span class="line">ping derpnstink.local</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224431471.png"><br>成功访问<img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224501794.png"><br>参考网上的WP，是在这里发现目标网站是Wordpress框架<img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224602041.png"></p>
+<p>由于不确定这个wordpress_audit是否在不确定目标网站是wordpress的情况下仍然会用wpscan，所以在能够访问网站目录之后再次运行命令查看输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cli.main workflow run --name wordpress_audit --target derpnstink.local</span><br></pre></td></tr></table></figure>
+<p>但是根据json结果发现仍然没有有效结果，参考其他WP，使用wpscan是针对derpnstink.local&#x2F;weblog&#x2F;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url http://derpnstink.local/weblog/ --enumerate vp,vt,u --max-threads 3 --force</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224728809.png"><br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224817956.png"><br>这里的结果是能够看见暴露的管理员账号的<br>所以如果需要让工具显示出预期结果，思路应该是：先进行目录扫描，再对目录进行wpscan扫描，再对wpscan扫描的结果进行爆破<br>guardian-cli并没有dirb，但是可以用这里的gobuster替代<img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224905544.png"><br>尝试修改workflow</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">wordpress_audit</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Specialized</span> <span class="string">security</span> <span class="string">audit</span> <span class="string">for</span> <span class="string">WordPress</span> <span class="string">installations</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">1.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Guardian</span> <span class="string">AI</span></span><br><span class="line"></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">tech_verification</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">whatweb</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">Verify</span> <span class="string">target</span> <span class="string">is</span> <span class="string">WordPress</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 添加gobuster作为目录扫描</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">directory_discovery</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">gobuster</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">Discover</span> <span class="string">hidden</span> <span class="string">disrectories</span> <span class="string">like</span> <span class="string">/weblog/,/wp-content/,etc.</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="string">-w:</span> <span class="string">&quot;/root/guardian-cli/common.txt&quot;</span></span><br><span class="line">      <span class="attr">recursive:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">starus_codes:</span> <span class="string">&quot;200, 301, 302&quot;</span></span><br><span class="line">      <span class="attr">threads:</span> <span class="number">20</span>  </span><br><span class="line">    <span class="attr">dependencies:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tech_verification</span></span><br><span class="line">        </span><br><span class="line"><span class="comment"># 修改wpscan的执行依赖directory_discovery</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">wpscan_enum</span></span><br><span class="line">    <span class="attr">tool:</span> <span class="string">wpscan</span> </span><br><span class="line">    <span class="attr">description:</span> <span class="string">Enumerate</span> <span class="string">WordPress</span> <span class="string">users,</span> <span class="string">plugins,</span> <span class="string">and</span> <span class="string">themes</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">      <span class="attr">enumerate:</span> <span class="string">&quot;u,p,t&quot;</span></span><br><span class="line">      <span class="attr">detection_mode:</span> <span class="string">&quot;mixed&quot;</span></span><br><span class="line">    <span class="attr">dependencies:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">directory_discovery</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>尽管robuster能够正确输出目录信息，但是这里的AI决策没对扫出来的目录进行wpscan，因此还是没什么用<img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331224958641.png"><br>使用ai_explain.py部分提供的功能查看这次扫描AI的思考过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cli.main ai --session 20260331_011820 --all --format json</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331225102889.png"></p>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260331225144543.png"></p>
+<p>这里的分析是因为guardian-cli原本是支持gemini的，其余的模型有些部分兼容没写好<br>分析AI对weblog的决策：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;decision&quot;</span><span class="punctuation">:</span> </span><br><span class="line"><span class="string">&quot;### Analysis of Gobuster Output\n\nThe Gobuster scan enumerated directories and files on the target `http://derpnstink.local`. Below is a detailed analysis of the findings, including their significance, potential vulnerabilities, and recommendations.\n\n---\n\n### FINDINGS:\n\n</span></span><br><span class="line"><span class="string">#### 1. [HIGH] Sensitive files exposed with restricted access\n  </span></span><br><span class="line"><span class="string">- Evidence: `.htaccess`, `.htpasswd`, `.hta` (Status: 403)\n  </span></span><br><span class="line"><span class="string">- Impact: These files are commonly used for configuration and access control in web servers. While they are currently inaccessible (403 Forbidden), their presence in the web root could indicate improper file management. If misconfigured or accessible due to other vulnerabilities, they could expose sensitive information such as authentication credentials or server configuration details.\n  </span></span><br><span class="line"><span class="string">- Recommendation: \n    </span></span><br><span class="line"><span class="string">- Ensure these files are not publicly accessible.\n</span></span><br><span class="line"><span class="string">- Move sensitive files outside the web root if possible.\n    </span></span><br><span class="line"><span class="string">- Use proper file permissions to restrict access.\n    </span></span><br><span class="line"><span class="string">- Regularly audit the web server for sensitive file exposure.\n\n---\n\n</span></span><br><span class="line"><span class="string">#### 2. [MEDIUM] Presence of `robots.txt` file\n  - Evidence: `robots.txt` (Status: 200) [Size: 53]\n  </span></span><br><span class="line"><span class="string">- Impact: The `robots.txt` file is used to instruct search engine crawlers on which parts of the site to index or avoid. However, attackers often use this file to identify directories or files that are intentionally hidden but still accessible. If sensitive paths are listed in this file, it could aid attackers in reconnaissance.\n </span></span><br><span class="line"><span class="string">- Recommendation:\n    </span></span><br><span class="line"><span class="string">- Review the contents of `robots.txt` to ensure no sensitive or critical paths are disclosed.\n    </span></span><br><span class="line"><span class="string">- Avoid including sensitive directories in `robots.txt`. Instead, secure them with proper authentication and authorization mechanisms.\n\n---\n\n</span></span><br><span class="line"><span class="string">#### 3. [MEDIUM] Accessible directory structure\n  </span></span><br><span class="line"><span class="string">- Evidence:\n    - `css` (Status: 301) [--&gt; http://derpnstink.local/css/]\n   </span></span><br><span class="line"><span class="string">- `javascript` (Status: 301) [--&gt; http://derpnstink.local/javascript/]\n    </span></span><br><span class="line"><span class="string">- `js` (Status: 301) [--&gt; http://derpnstink.local/js/]\n    </span></span><br><span class="line"><span class="string">- `php` (Status: 301) [--&gt; http://derpnstink.local/php/]\n    </span></span><br><span class="line"><span class="string">- `temporary` (Status: 301) [--&gt; http://derpnstink.local/temporary/]\n    </span></span><br><span class="line"><span class="string">- `weblog` (Status: 301) [--&gt; http://derpnstink.local/weblog/]\n  </span></span><br><span class="line"><span class="string">- Impact: The presence of accessible directories may expose sensitive files or scripts if directory listing is enabled or if files within these directories are not properly secured. For example, the `temporary` directory could contain leftover files, backups, or test data, while the `php` directory could expose PHP scripts that might be vulnerable to exploitation.\n  </span></span><br><span class="line"><span class="string">- Recommendation:\n    </span></span><br><span class="line"><span class="string">- Disable directory listing on the web server to prevent unauthorized browsing of directory contents.\n   </span></span><br><span class="line"><span class="string">- Audit the contents of these directories to ensure no sensitive or unnecessary files are present.\n    </span></span><br><span class="line"><span class="string">- Implement proper access controls to restrict access to sensitive directories.\n\n---\n\n</span></span><br><span class="line"><span class="string">#### 4. [LOW] Restricted access to `server-status`\n  </span></span><br><span class="line"><span class="string">- Evidence: `server-status` (Status: 403)\n  </span></span><br><span class="line"><span class="string">- Impact: The `server-status` endpoint is used to display real-time server information, such as active connections and resource usage. While it is currently restricted (403 Forbidden), if misconfigured, it could leak sensitive server information to attackers.\n </span></span><br><span class="line"><span class="string">- Recommendation:\n    </span></span><br><span class="line"><span class="string">- Ensure `server-status` is only accessible to authorized users (e.g., via IP whitelisting or authentication).\n    </span></span><br><span class="line"><span class="string">- Regularly review server configurations to prevent accidental exposure.\n\n---\n\n</span></span><br><span class="line"><span class="string">#### 5. [INFO] Accessible `index.html`\n  </span></span><br><span class="line"><span class="string">- Evidence: `index.html` (Status: 200) [Size: 1298]\n  </span></span><br><span class="line"><span class="string">- Impact: The `index.html` file is the default landing page for the website. While its presence is expected, it should be reviewed to ensure it does not contain sensitive information (e.g., comments, debug information, or hardcoded credentials).\n  </span></span><br><span class="line"><span class="string">- Recommendation:\n    </span></span><br><span class="line"><span class="string">- Review the contents of `index.html` for any sensitive or unnecessary information.\n   - Remove any debug or development-related content before deploying to production.\n\n---\n\n</span></span><br><span class="line"><span class="string">### SUMMARY:\n\n</span></span><br><span class="line"><span class="string">The Gobuster scan revealed several potential security issues on the target `http://derpnstink.local`. While no critical vulnerabilities were identified, there are several areas of concern:\n\n</span></span><br><span class="line"><span class="string">1. **Sensitive files** (`.htaccess`, `.htpasswd`, `.hta`) are present but currently restricted. Misconfigurations could expose them.\n</span></span><br><span class="line"><span class="string">2. The `robots.txt` file could disclose sensitive paths to attackers.\n</span></span><br><span class="line"><span class="string">3. Accessible directories (`temporary`, `php`, `weblog`, etc.) could expose sensitive files or scripts if not properly secured.\n</span></span><br><span class="line"><span class="string">4. The `server-status` endpoint is restricted but should be monitored to prevent accidental exposure.\n</span></span><br><span class="line"><span class="string">5. The `index.html` file should be reviewed for any sensitive or debug information.\n\n---\n\n### POTENTIAL ATTACK VECTORS:\n- Exploiting misconfigurations to access restricted files (`.htaccess`, `.htpasswd`, etc.).\n</span></span><br><span class="line"><span class="string">- Using the `robots.txt` file to identify hidden directories or files.\n</span></span><br><span class="line"><span class="string">- Accessing sensitive files or scripts in publicly accessible directories.\n</span></span><br><span class="line"><span class="string">- Exploiting the `server-status` endpoint if it becomes misconfigured.\n\n---\n\n</span></span><br><span class="line"><span class="string">### FALSE POSITIVE ASSESSMENT:\n</span></span><br><span class="line"><span class="string">- The restricted files (`.htaccess`, `.htpasswd`, `.hta`) and `server-status` endpoint are not currently accessible (403 Forbidden). However, their presence indicates potential misconfiguration risks.\n</span></span><br><span class="line"><span class="string">- No false positives were identified in the output.\n\n---\n\n</span></span><br><span class="line"><span class="string">### OVERALL SECURITY POSTURE:\n</span></span><br><span class="line"><span class="string">The target exhibits a **moderate security posture**. While no critical vulnerabilities were identified, there are several medium and low-severity issues that could be exploited if not addressed. The presence of sensitive files, accessible directories, and the `robots.txt` file requires immediate attention to prevent information disclosure and potential exploitation.&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;reasoning&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Provider does not support explicit reasoning extraction&quot;</span></span><br></pre></td></tr></table></figure>
+<p>AI 在这里做出的决策是“聚合式风险评估”：</p>
+<ol>
+<li><strong>模式匹配：</strong> 发现多个目录（css, javascript, php, temporary, <strong>weblog</strong>）。</li>
+<li><strong>统一归因：</strong> 将它们全部归因于“目录结构暴露”这一单一风险类别。</li>
+<li><strong>差异化描述：</strong> 为了使报告看起来更专业，AI 对不同的目录名字做了“看文生义”的描述。<ul>
+<li>对于 <code>temporary</code>，它联想到“备份文件”。</li>
+<li>对于 <code>php</code>，它联想到“脚本漏洞”。</li>
+<li>对于 <code>weblog</code>，虽然报告文本中主要将其作为目录列表的一部分提及，但其决策逻辑隐含了“日志文件或博客脚本可能被直接访问”的风险。</li>
+</ul>
+</li>
+</ol>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><h3 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h3><ul>
+<li>虽然有tool-agent，可以从ai返回需要选择的工具以及对应的命令，但是受限于本地的工具与ai给出的命令版本不兼容，导致错误，但是框架往往采取静默的方式冷处理了，所以框架运行的情况并不稳定，兼容性也不算好</li>
+<li><code>AnalystAgent</code> (analyst_agent.py)的关联分析能力受限于：<ul>
+<li><strong>上下文限制</strong>，截断操作（只看前 5000 字符，丢失信息）</li>
+<li><strong>解析质量</strong>（依赖上一层解析是否准确）</li>
+<li><strong>缺乏外挂知识库</strong>（不懂深层业务逻辑）目前的 Agent 只是在做<strong>文本推理</strong>，它并没有外挂专业的安全知识库。</li>
+<li><strong>简单的文本拼接</strong>（丢失了数据间的结构化关系），设定的关联分析核心是将发现按照工具分组打印出来</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/guardian-cli/" rel="tag"># guardian-cli</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/" rel="prev" title="AI驱动的白盒代码审计工具原理分析与对比">
+                  <i class="fa fa-angle-left"></i> AI驱动的白盒代码审计工具原理分析与对比
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder"></span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">87k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">1:19</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>
