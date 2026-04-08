@@ -21,24 +21,40 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"m1ntice.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Summary">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xylia&#39;s Blog">
-<meta property="og:url" content="https://m1ntice.github.io/index.html">
+    <meta name="description" content="针对 DeRPnStiNK 靶场特定策略改进针对上述问题做以下尝试：优化系统提示词，增强工具定义的“描述元数据” 优化系统提示词分析位于&#x2F;ai&#x2F;prompt_templates下的panner.py以及tool_selector.py  Planner：它的提示词太宏观了（”Think strategically”, “Follow frameworks”），它把“目录扫描”看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="guardian-cli-测试实践（二）">
+<meta property="og:url" content="https://m1ntice.github.io/2026/04/08/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="Xylia&#39;s Blog">
-<meta property="og:description" content="Summary">
+<meta property="og:description" content="针对 DeRPnStiNK 靶场特定策略改进针对上述问题做以下尝试：优化系统提示词，增强工具定义的“描述元数据” 优化系统提示词分析位于&#x2F;ai&#x2F;prompt_templates下的panner.py以及tool_selector.py  Planner：它的提示词太宏观了（”Think strategically”, “Follow frameworks”），它把“目录扫描”看">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231233343.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231346430.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231434421.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231513002.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231634291.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231701386.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231751069.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231827206.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231859767.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408232043302.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408232121062.png">
+<meta property="article:published_time" content="2026-04-08T15:09:34.000Z">
+<meta property="article:modified_time" content="2026-04-08T15:21:59.501Z">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="guardian-cli">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/M1ntIce/image/master/20260408231233343.png">
 
 
-<link rel="canonical" href="https://m1ntice.github.io/">
+<link rel="canonical" href="https://m1ntice.github.io/2026/04/08/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://m1ntice.github.io/2026/04/08/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/","path":"2026/04/08/guardian-cli-测试实践（二）/guardian-cli-测试实践（二）/","title":"guardian-cli-测试实践（二）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Xylia's Blog</title>
+<title>guardian-cli-测试实践（二） | Xylia's Blog</title>
   
 
 
@@ -71,7 +87,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Xylia's Blog</h1>
+      <p class="site-title">Xylia's Blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Xylia's Tech Notes</p>
@@ -125,7 +141,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -138,6 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%92%88%E5%AF%B9-DeRPnStiNK-%E9%9D%B6%E5%9C%BA%E7%89%B9%E5%AE%9A%E7%AD%96%E7%95%A5%E6%94%B9%E8%BF%9B"><span class="nav-number">1.</span> <span class="nav-text">针对 DeRPnStiNK 靶场特定策略改进</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="nav-number">1.1.</span> <span class="nav-text">优化系统提示词</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.1.</span> <span class="nav-text">Result</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E2%80%9C%E6%8F%8F%E8%BF%B0%E5%85%83%E6%95%B0%E6%8D%AE%E2%80%9D"><span class="nav-number">1.1.1.0.0.1.</span> <span class="nav-text">增强工具定义的“描述元数据”</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Code-Analysis"><span class="nav-number">1.1.2.</span> <span class="nav-text">Source Code Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#workflow-py-load-workflow"><span class="nav-number">1.1.2.0.0.1.</span> <span class="nav-text">workflow.py: _load_workflow</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#core-workflow-py-run-workflow"><span class="nav-number">1.1.2.0.0.2.</span> <span class="nav-text">core&#x2F;workflow.py: run_workflow</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#core-workflow-py"><span class="nav-number">1.1.2.0.0.3.</span> <span class="nav-text">core&#x2F;workflow.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#tool-agent-py"><span class="nav-number">1.1.2.0.0.4.</span> <span class="nav-text">tool_agent.py</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">2.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,16 +191,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/04/08/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -197,13 +215,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
+      <meta itemprop="name" content="guardian-cli-测试实践（二） | Xylia's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/04/08/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">guardian-cli-测试实践（二）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          guardian-cli-测试实践（二）
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -241,8 +259,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="针对-DeRPnStiNK-靶场特定策略改进"><a href="#针对-DeRPnStiNK-靶场特定策略改进" class="headerlink" title="针对 DeRPnStiNK 靶场特定策略改进"></a>针对 DeRPnStiNK 靶场特定策略改进</h1><p>针对上述问题做以下尝试：优化系统提示词，增强工具定义的“描述元数据”</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="针对-DeRPnStiNK-靶场特定策略改进"><a href="#针对-DeRPnStiNK-靶场特定策略改进" class="headerlink" title="针对 DeRPnStiNK 靶场特定策略改进"></a>针对 DeRPnStiNK 靶场特定策略改进</h1><p>针对上述问题做以下尝试：优化系统提示词，增强工具定义的“描述元数据”</p>
 <h2 id="优化系统提示词"><a href="#优化系统提示词" class="headerlink" title="优化系统提示词"></a>优化系统提示词</h2><p>分析位于&#x2F;ai&#x2F;prompt_templates下的panner.py以及tool_selector.py</p>
 <ol>
 <li><strong>Planner</strong>：它的提示词太宏观了（”Think strategically”, “Follow frameworks”），它把“目录扫描”看作一个任务节点，做完了就认为任务结束，缺乏<strong>特征触发</strong>的微观逻辑。</li>
@@ -307,7 +324,6 @@
 <li>后续应该考虑从autonomous下手考虑怎么实现真正的AI驱动的黑盒扫描</li>
 </ul>
 
-      
     </div>
 
     
@@ -315,294 +331,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/guardian-cli/" rel="tag"># guardian-cli</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">guardian-cli 测试实践（一）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2026-03-31 22:30:40" itemprop="dateCreated datePublished" datetime="2026-03-31T22:30:40+08:00">2026-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-04-08 23:24:37" itemprop="dateModified" datetime="2026-04-08T23:24:37+08:00">2026-04-08</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>21k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>19 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
-<li>guardian-cli：<a target="_blank" rel="noopener" href="https://github.com/zakirkun/guardian-cli">https://github.com/zakirkun/guardian-cli</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv venv</span><br><span class="line"><span class="built_in">source</span> venv/bin/activate</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure></li>
-<li>DeRPnStiNK：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/derpnstink-1,221/">https://www.vulnhub.com/entry/derpnstink-1,221/</a><ul>
-<li><strong>用户名：</strong> <code>stinky</code></li>
-<li><strong>密码：</strong> <code>wedgie57</code>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">AI驱动的白盒代码审计工具原理分析与对比</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2026-03-24 21:58:56 / Modified: 22:05:36" itemprop="dateCreated datePublished" datetime="2026-03-24T21:58:56+08:00">2026-03-24</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>5.1k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="静态分析引擎-LLM"><a href="#静态分析引擎-LLM" class="headerlink" title="静态分析引擎 + LLM"></a>静态分析引擎 + LLM</h1><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">阶段一：传统静态分析（确定性）</span><br><span class="line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br><span class="line">源代码</span><br><span class="line">  │</span><br><span class="line">  ├─→ AST解析（抽象语法树构建）</span><br><span class="line">  ├─→ CFG构建（控制流图）</span><br><span class="line">  ├─→ DFG构建（数据流图）</span><br><span class="line">  ├─→ 污点分析（Taint Analysis）</span><br><span class="line">  │     <span class="keyword">source</span> → sanitizer? → sink</span><br><span class="line">  ├─→ 模式匹配（Semgrep/CodeQL规则）</span><br><span class="line">  └─→ 输出：原始告警列表（数百~数千条）</span><br><span class="line">        │</span><br><span class="line">        │  典型问题：</span><br><span class="line">        │  - 误报率 <span class="number">60</span>%~<span class="number">90</span>%</span><br><span class="line">        │  - 报告只给行号，缺乏上下文解释</span><br><span class="line">        │  - 无法判断业务逻辑漏洞</span><br><span class="line">        ▼</span><br><span class="line"></span><br><span class="line">阶段二：LLM后处理（概率性）</span><br><span class="line">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br><span class="line">原始告警 + 告警上下文代码片段（±N行）</span><br><span class="line">  │</span><br><span class="line">  ├─→ 逐条送入LLM</span><br><span class="line">  │     Prompt大致结构：</span><br><span class="line">  │     ┌─────────────────────────────┐</span><br><span class="line">  │     │ 你是一个安全审计专家。        │</span><br><span class="line">  │     │ 规则引擎报告以下潜在漏洞：     │</span><br><span class="line">  │     │ 类型: SQL注入               │</span><br><span class="line">  │     │ 位置: user_service.py:<span class="number">42</span>    │</span><br><span class="line">  │     │ [附带代码上下文]             │</span><br><span class="line">  │     │ 请判断：                    │</span><br><span class="line">  │     │ <span class="number">1.</span> 这是真阳性还是误报？       │</span><br><span class="line">  │     │ <span class="number">2.</span> 漏洞的利用条件是什么？     │</span><br><span class="line">  │     │ <span class="number">3.</span> 严重程度如何？            │</span><br><span class="line">  │     │ <span class="number">4.</span> 给出修复建议              │</span><br><span class="line">  │     └─────────────────────────────┘</span><br><span class="line">  │</span><br><span class="line">  ├─→ LLM输出结构化判断</span><br><span class="line">  │     &#123; <span class="string">&quot;verdict&quot;</span>: <span class="string">&quot;true_positive&quot;</span>,</span><br><span class="line">  │       <span class="string">&quot;severity&quot;</span>: <span class="string">&quot;HIGH&quot;</span>,</span><br><span class="line">  │       <span class="string">&quot;explanation&quot;</span>: <span class="string">&quot;...&quot;</span>,</span><br><span class="line">  │       <span class="string">&quot;fix_suggestion&quot;</span>: <span class="string">&quot;...&quot;</span> &#125;</span><br><span class="line">  │</span><br><span class="line">  └─→ 过滤 + 重排 + 格式化 → 最终报告</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/03/24/AI%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7/AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%99%BD%E7%9B%92%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AF%B9%E6%AF%94/#more" rel="contents">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/31/guardian-cli/guardian-cli-%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="guardian-cli 测试实践（一）">
+                  <i class="fa fa-angle-left"></i> guardian-cli 测试实践（一）
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/03/24/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/24/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/" class="post-title-link" itemprop="url">安全架构学学习笔记：IT、OT、IOT与CIA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2026-03-24 21:31:48 / Modified: 22:05:52" itemprop="dateCreated datePublished" datetime="2026-03-24T21:31:48+08:00">2026-03-24</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>3.3k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/402d30999dea67310cd9b167ff7f068.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/03/24/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AIT%E3%80%81OT%E3%80%81IOT%E4%B8%8ECIA/#more" rel="contents">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -610,606 +354,7 @@
 
 
 
-    
 
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2026/03/11/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BA%A4%E4%BB%98%E8%BF%90%E7%BB%B4%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BA%A4%E4%BB%98%E8%BF%90%E7%BB%B4%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/11/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BA%A4%E4%BB%98%E8%BF%90%E7%BB%B4%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BA%A4%E4%BB%98%E8%BF%90%E7%BB%B4%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="post-title-link" itemprop="url">现代软件架构与交付运维核心知识图谱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2026-03-11 22:05:14" itemprop="dateCreated datePublished" datetime="2026-03-11T22:05:14+08:00">2026-03-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-19 23:06:53" itemprop="dateModified" datetime="2026-03-19T23:06:53+08:00">2026-03-19</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>4.6k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>4 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="云原生架构-安全"><a href="#云原生架构-安全" class="headerlink" title="云原生架构&amp;&amp;安全"></a>云原生架构&amp;&amp;安全</h2><h3 id="XaaS"><a href="#XaaS" class="headerlink" title="XaaS"></a>XaaS</h3><ul>
-<li><strong>IaaS（Infrastructure-as-a-Service基础设施即服务）</strong>： 提供给消费者的服务是对所有设施</li>
-</ul>
-<p>的利用，包括处理、存储、网络和其它基本的计算资源，用户能够部署和运行任意软件，包</p>
-<p>括操作系统和应用程序。主要功能就是讲底层的硬件资源以服务的方式对外暴露，为上层提</p>
-<p>供服务。IaaS模式下，只提供云计算服务的基础设施，用户可以部署和运行任意软件</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/03/11/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BA%A4%E4%BB%98%E8%BF%90%E7%BB%B4%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E7%8E%B0%E4%BB%A3%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E4%BA%A4%E4%BB%98%E8%BF%90%E7%BB%B4%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2024/06/04/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/06/04/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/" class="post-title-link" itemprop="url">缓存投毒</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-06-04 22:24:07" itemprop="dateCreated datePublished" datetime="2024-06-04T22:24:07+08:00">2024-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-19 23:20:38" itemprop="dateModified" datetime="2026-03-19T23:20:38+08:00">2026-03-19</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>2.4k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h3 id="缓存投毒的原理"><a href="#缓存投毒的原理" class="headerlink" title="缓存投毒的原理"></a>缓存投毒的原理</h3><p>发送导致有害响应的请求，将该请求保存在缓存服务之中并且提供给其它的用户</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/06/04/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/%E7%BC%93%E5%AD%98%E6%8A%95%E6%AF%92/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2023/06/23/Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/23/Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">Java 命令执行</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-06-23 21:31:43" itemprop="dateCreated datePublished" datetime="2023-06-23T21:31:43+08:00">2023-06-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-19 23:31:11" itemprop="dateModified" datetime="2026-03-19T23:31:11+08:00">2026-03-19</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>3.6k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Runtime-命令执行"><a href="#Runtime-命令执行" class="headerlink" title="Runtime 命令执行"></a>Runtime 命令执行</h3><p><code>java.lang.Runtime</code>类的<code>exec</code>方法来进行命令执行</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/23/Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/Java-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2022/07/31/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/Java%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/31/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/Java%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">Java 反序列化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-31 21:16:17" itemprop="dateCreated datePublished" datetime="2022-07-31T21:16:17+08:00">2022-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-19 23:30:12" itemprop="dateModified" datetime="2026-03-19T23:30:12+08:00">2026-03-19</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>17k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>15 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="java-的序列化和反序列化"><a href="#java-的序列化和反序列化" class="headerlink" title="java 的序列化和反序列化"></a>java 的序列化和反序列化</h3><p><strong>Java 的序列化</strong></p>
-<p>Java 序列化是指把java 对象转换为字节序列过程便于保存在内存，文件，数据之中。</p>
-<p><strong>Java 的反序列化</strong></p>
-<p>Java 反序列是指把字节序列恢复成Java对象的过程，java.io.ObjectInputStream类的readObject()&#96;方法用于反序列化</p>
-<p>Java序列化对象因为可以方便的将对象转换成字节数组，又可以方便快速的将字节数组反序列成Java对象并且可以有效地实现多平台之间的通信，对象持久化存储而被频繁地运用在<code>Socket传输</code>。在RMI(Remote Method Invocation)，JMX(java Management Extension)，http请求等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/31/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/Java%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2022/07/01/JNI-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/JNI-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/01/JNI-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/JNI-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">JNI 安全基础</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-01 22:08:50" itemprop="dateCreated datePublished" datetime="2022-07-01T22:08:50+08:00">2022-07-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-04 22:22:11" itemprop="dateModified" datetime="2024-06-04T22:22:11+08:00">2024-06-04</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>6k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Java语言是基于C语言实现的，Java的底层很多API都是通过<code>JNI(Java Native Interface)</code>来实现的。通过<code>JNI</code>接口C&#x2F;C++和Java可以互相调用–存在跨平台问题。Java可以通过JNI调用来弥补语言自身问题的不足。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/01/JNI-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/JNI-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://m1ntice.github.io/2022/05/23/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/Java%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xylia's Blog">
-      <meta itemprop="description" content="Summary">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Xylia's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/23/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/Java%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Java 反射机制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-05-23 21:12:00" itemprop="dateCreated datePublished" datetime="2022-05-23T21:12:00+08:00">2022-05-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-19 23:14:54" itemprop="dateModified" datetime="2026-03-19T23:14:54+08:00">2026-03-19</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>4.5k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>4 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Java的反射是指程序在运行期间可以拿到一个对象的所有信息，并且可以操作类或者对象的内部属性–<code>反射属于动态编译</code></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/23/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/Java%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
 </div>
   </main>
