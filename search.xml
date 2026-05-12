@@ -1839,8 +1839,8 @@ padBuster.pl url plaintext[String] Block_Size -encoding x
       </tags>
   </entry>
   <entry>
-    <title>DeRPStiNK-靶场</title>
-    <url>/2026/05/12/DeRPStiNK-%E9%9D%B6%E5%9C%BA/DeRPStiNK-%E9%9D%B6%E5%9C%BA/</url>
+    <title>DeRPStiNK靶场</title>
+    <url>/2026/05/12/DeRPStiNK-%E9%9D%B6%E5%9C%BA/DeRPStiNK%E9%9D%B6%E5%9C%BA/</url>
     <content><![CDATA[<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h3 id="扫描端口"><a href="#扫描端口" class="headerlink" title="扫描端口"></a>扫描端口</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo nmap -sS -p 1-1000 10.201.2.66</span><br><span class="line">sudo masscan 10.201.2.66 -p1-1000</span><br><span class="line">sudo masscan 10.201.2.66 -p1-65535</span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428150732151.png"></p>
 <ul>
@@ -1910,5 +1910,8 @@ padBuster.pl url plaintext[String] Block_Size -encoding x
 
 <p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512152646308.png"></p>
 ]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
   </entry>
 </search>
